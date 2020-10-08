@@ -5,25 +5,26 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-    <h:head>
-        <title>System Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-    </h:head> 
-    <body>
-        <div class="container">	
-            <h1 class="text-center">AUSPrintings Customer Management System</h1>	
-            <form method="post" action="j_security_check" >
-                <div class="form-group">
-                    <label for="j_username">Email address:</label><br/>
-                    <input class="form-control" type="text" name="j_username"/>
-                </div>
-                <div>
-                    <label for="j_password">Password:</label><br/>
-                    <input class="form-control" type="password" name="j_password"/>
-                </div><br/>
-                <button class="btn btn-primary btn-block" type="submit">Sign In</button>
-            </form>
-        </div> 	
-    </body> 
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="title">
+            <title>System Login</title>
+        </ui:define>
+
+        <ui:define name="content">
+            <div class="container">	
+                <h1 class="text-center">Login to AUSPrintings Customer Management System</h1>	
+                <form method="post" action="j_security_check" >
+                    <div class="form-group">
+                        <label for="j_username">Email address:</label><br/>
+                        <input class="form-control" type="text" name="j_username"/>
+                    </div>
+                    <div>
+                        <label for="j_password">Password:</label><br/>
+                        <input class="form-control" type="password" name="j_password"/>
+                    </div><br/>
+                    <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+                </form>
+            </div> 	
+        </ui:define>
+    </ui:composition>
 </html>

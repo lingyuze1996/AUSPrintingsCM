@@ -4,11 +4,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-    <h:head>
-        <title>Access Denied</title>
-    </h:head> 
-    <h:body> 
-        <h1>Authentication Error!</h1>
-        <h:link outcome="/login.jsf" value="login"/>
-    </h:body> 
+    <ui:composition template="layout.xhtml">
+        <ui:define name="content">
+            <h1>Authentication Error!</h1>
+            <h:link outcome="/faces/login.xhtml" value="login"/>
+        </ui:define>
+    </ui:composition>
+
 </html>
