@@ -30,7 +30,7 @@
         <web-resource-collection>
             <web-resource-name>Normal Staff Web Resource</web-resource-name>
             <description/>
-            <url-pattern>/faces/normal/*</url-pattern>
+            <url-pattern>/faces/normalll/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description>Normal Staff Auth Constraint</description>
@@ -42,7 +42,7 @@
         <display-name>Admin Staff</display-name>
         <web-resource-collection>
             <web-resource-name>Admin Staff Web Resource</web-resource-name>
-            <url-pattern>/faces/admin/*</url-pattern>
+            <url-pattern>/faces/adminnn/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description>Admin Staff Auth Constraint</description>
