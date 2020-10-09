@@ -1,34 +1,75 @@
+-- Table Customer
+DROP TABLE CONTACT;
+DROP TABLE CUSTOMER;
+DROP TABLE INDUSTRYTYPE;
 DROP TABLE APPUSER;
+
+CREATE TABLE CUSTOMER (
+    custId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    custABN CHAR(11) NOT NULL,
+    custName VARCHAR(30) NOT NULL,
+    custAddress VARCHAR(80) NOT NULL,
+    custCentralTel VARCHAR(10) NOT NULL,
+    custWebsite VARCHAR(40),
+    custFoundedYear INTEGER NOT NULL,
+    iName VARCHAR(20) NOT NULL,
+    uId INTEGER NOT NULL
+);
+
+ALTER TABLE CUSTOMER ADD CONSTRAINT customer_pk PRIMARY KEY (custId);
+ALTER TABLE CUSTOMER ADD CONSTRAINT customer_abn_unique UNIQUE (custABN);
+
+-- Table IndustryType
+CREATE TABLE INDUSTRYTYPE (
+    iName VARCHAR(20) NOT NULL,
+    iDesc VARCHAR(50)
+);
+
+ALTER TABLE INDUSTRYTYPE ADD CONSTRAINT industrytype_pk PRIMARY KEY (iName);
+
+
+-- Table Contact
+CREATE TABLE CONTACT (
+    contId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    contFirstName VARCHAR(20) NOT NULL,
+    contLastName VARCHAR(20) NOT NULL,
+    contGender CHAR(1) NOT NULL,
+    contPosition VARCHAR(20) NOT NULL,
+    contPhoneNo CHAR(10) NOT NULL,
+    contEmail VARCHAR(40) NOT NULL,
+    custId INTEGER NOT NULL
+);
+
+ALTER TABLE CONTACT
+    ADD CONSTRAINT chk_contact_gender CHECK (contGender IN (
+        'F',
+        'M'
+    ));
+ALTER TABLE CONTACT ADD CONSTRAINT contact_pk PRIMARY KEY (contId);
+
+
+-- Table AppUser
 CREATE TABLE APPUSER (
     uId INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     uRole VARCHAR(10) NOT NULL,
     uFirstName VARCHAR(20) NOT NULL,
     uLastName VARCHAR(20) NOT NULL,
-    uDOB CHAR(10) NOT NULL,
+    uDOB DATE NOT NULL,
     uGender CHAR(1) NOT NULL,
     uEmail VARCHAR(40) NOT NULL,
     uPassword CHAR(64) NOT NULL    
 );
 
 ALTER TABLE APPUSER
-    ADD CONSTRAINT chk_gender CHECK (uGender IN (
+    ADD CONSTRAINT chk_user_gender CHECK (uGender IN (
         'F',
         'M'
     ));
-ALTER TABLE APPUSER ADD CONSTRAINT appuser_pk PRIMARY KEY ( uId );
-ALTER TABLE APPUSER ADD CONSTRAINT email_unique UNIQUE (uEmail);
+ALTER TABLE APPUSER ADD CONSTRAINT appuser_pk PRIMARY KEY (uId);
+ALTER TABLE APPUSER ADD CONSTRAINT appuser_email_unique UNIQUE (uEmail);
 
-INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('admin', 'Yuze', 'Ling', '1996-06-13', 'M', 'ylin0081@student.monash.edu', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
-INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('normal', 'John', 'Smith', '1993-05-10', 'F', 'johnsmith@gmail.com', '317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa');
-
-INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('normal', 'normal', 'normal', '1993-05-10', 'F', 'normal', '317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa');
-
-INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('admin', 'admin', 'admin', '1993-05-10', 'F', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
-
-select * from APPUSER;
-
+-- Foreign Key Constraints
+ALTER TABLE CUSTOMER ADD CONSTRAINT customer_uId_fk FOREIGN KEY (uId) REFERENCES APPUSER (uId);
+ALTER TABLE CUSTOMER ADD CONSTRAINT customer_iName_fk FOREIGN KEY (iName) REFERENCES INDUSTRYTYPE (iName);
+ALTER TABLE CONTACT ADD CONSTRAINT contact_custId_fk FOREIGN KEY (custId) REFERENCES CUSTOMER (custId);
