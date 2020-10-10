@@ -5,9 +5,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-    <ui:composition>
+    <ui:composition template="/layout.xhtml">
         <ui:define name="content">
-            Settings
+            #{userManagedBean.getUserByEmail("normal").ufirstname}
+            <br/>
+            #{userManagedBean.getUserByEmail("normal").ugender}
+            <br/>
+            #{userManagedBean.getUserByEmail("normal").upassword}
+            <br/>
         </ui:define>
     </ui:composition>
 </html>

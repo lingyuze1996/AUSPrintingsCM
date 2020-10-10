@@ -17,6 +17,7 @@ public interface UserRepository {
     void updateUser(Appuser user) throws Exception;
     void deleteUser(Appuser user) throws Exception;
     
+    Appuser getUserByEmail(String email) throws Exception;
     List<Appuser> getAllUsers() throws Exception;
     //void changeUserPassword(Appuser user, String newPassword) throws Exception;
 }
