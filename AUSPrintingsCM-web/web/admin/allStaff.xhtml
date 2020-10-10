@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>
+                        <h:outputLabel value="Name"/>
+                    </td>
+                    <td>
+                        <h:outputLabel value="Role"/>
+                    </td>
+                    <td>
+                        <h:outputLabel value="Email"/>
+                    </td>
+                </tr>
+
+                <ui:repeat value="#{userManagedBean.allUsers}" var="user">
+                    <tr>
+                        <td>
+                            <h:outputText value="#{user.ufirstname}"/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{user.urole}"/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{user.uemail}"/>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </ui:define>
+    </ui:composition>
+</html>
+
