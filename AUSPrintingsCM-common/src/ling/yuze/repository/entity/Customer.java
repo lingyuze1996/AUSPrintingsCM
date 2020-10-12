@@ -1,5 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package ling.yuze.repository.entity;
 
@@ -18,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -46,29 +50,39 @@ public class Customer implements Serializable {
     @Column(name = "CUSTID")
     private Integer custid;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 11)
     @Column(name = "CUSTABN")
     private String custabn;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "CUSTNAME")
     private String custname;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 80)
     @Column(name = "CUSTADDRESS")
     private String custaddress;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "CUSTCENTRALTEL")
     private String custcentraltel;
+    @Size(max = 40)
     @Column(name = "CUSTWEBSITE")
     private String custwebsite;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "CUSTFOUNDEDYEAR")
     private int custfoundedyear;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custid")
     private Collection<Contact> contactCollection;
     @JoinColumn(name = "UID", referencedColumnName = "UID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Appuser uid;
     @JoinColumn(name = "INAME", referencedColumnName = "INAME")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Industrytype iname;
 
     public Customer() {
@@ -190,7 +204,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return this.custname;
+        return "ling.yuze.repository.entity.Customer[ custid=" + custid + " ]";
     }
     
 }

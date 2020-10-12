@@ -1,7 +1,5 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 package ling.yuze.managedbean;
 
@@ -19,7 +17,7 @@ import ling.yuze.repository.entity.Appuser;
  * @author Roger
  */
 @Named
-@RequestScoped
+@SessionScoped
 public class UserManagedBean implements Serializable{
     @EJB
     private UserRepository userRepository;
@@ -38,11 +36,37 @@ public class UserManagedBean implements Serializable{
         return null;
     }
     
-    public Appuser getUserByEmail(String email) {
+    public void editUser(Appuser user) throws Exception{
+        userRepository.updateUser(user);
+    }
+    
+    public void deleteUserById (Integer id) {
+        try {
+            Appuser user = getUserById(id);
+            if (user != null)
+                userRepository.deleteUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Appuser getUserById(Integer id) {
+        try {
+            Appuser user = userRepository.getUserById(id);
+            if (user != null) {
+                return user;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public String getUserByEmail(String email) {
         try {
             Appuser user = userRepository.getUserByEmail(email);
             if (user != null)
-                return user;
+                this.appuser = user;
         } catch (Exception e) {
             e.printStackTrace();
         }

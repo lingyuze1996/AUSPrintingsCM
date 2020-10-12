@@ -26,12 +26,20 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void updateUser(Appuser user) throws Exception {
-        
+        em.merge(user);
     }
 
     @Override
     public void deleteUser(Appuser user) throws Exception {
-        
+        if (!em.contains(user))
+            user = em.merge(user);
+        em.remove(user);
+    }
+    
+    @Override
+    public Appuser getUserById(Integer id) throws Exception {
+        Appuser user = em.find(Appuser.class, id);
+        return user;
     }
     
     @Override

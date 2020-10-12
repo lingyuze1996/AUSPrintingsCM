@@ -1,5 +1,7 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package ling.yuze.repository.entity;
 
@@ -7,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -48,28 +51,40 @@ public class Appuser implements Serializable {
     @Column(name = "UID")
     private Integer uid;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
     @Column(name = "UROLE")
     private String urole;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "UFIRSTNAME")
     private String ufirstname;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
     @Column(name = "ULASTNAME")
     private String ulastname;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "UDOB")
     @Temporal(TemporalType.DATE)
     private Date udob;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "UGENDER")
     private Character ugender;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 40)
     @Column(name = "UEMAIL")
     private String uemail;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
     @Column(name = "UPASSWORD")
     private String upassword;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "uid")
+    @OneToMany(mappedBy = "uid")
     private Collection<Customer> customerCollection;
 
     public Appuser() {
@@ -185,7 +200,7 @@ public class Appuser implements Serializable {
 
     @Override
     public String toString() {
-        return this.ufirstname + " " + this.ulastname + " - " + this.urole;
+        return "ling.yuze.repository.entity.Appuser[ uid=" + uid + " ]";
     }
     
 }

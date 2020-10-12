@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true"/>
+        </f:metadata>
+        <ui:define name="content">
+            <h2 class="text-center">Staff Details</h2>
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="First Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.ufirstname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Last Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.ulastname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Gender: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.ugender}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Date of Birth: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.udob}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                            </h:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Email: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.uemail}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Role: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{userController.user.urole}"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:button class="btn btn-primary" value="Edit Staff" outcome="/faces/admin/editStaff.xhtml"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -16,7 +16,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Staff First Name!"
-                                value="#{userManagedBean.appuser.ufirstname}"/>
+                                value="#{userController.user.ufirstname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +27,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Staff Last Name!"
-                                value="#{userManagedBean.appuser.ulastname}"/>
+                                value="#{userController.user.ulastname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -38,7 +38,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Choose Staff Gender!"
-                                value="#{userManagedBean.appuser.ugender}"/>
+                                value="#{userController.user.ugender}"/>
                         </td>
                     </tr>
                     <tr>
@@ -49,7 +49,7 @@
                             <h:inputText converterMessage="Please follow date format mm/dd/yyyy!"
                                          required="true" 
                                          requiredMessage="Please Enter Staff Date of Birth!"
-                                         value="#{userManagedBean.appuser.udob}">
+                                         value="#{userController.user.udob}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                             </h:inputText>
                         </td>
@@ -62,18 +62,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Choose Staff Email!"
-                                value="#{userManagedBean.appuser.uemail}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:outputLabel value="Password: "/>
-                        </td>
-                        <td>
-                            <h:inputSecret
-                                required="true" 
-                                requiredMessage="Please Enter Staff Password!"
-                                value="#{userManagedBean.appuser.upassword}"/>
+                                value="#{userController.user.uemail}"/>
                         </td>
                     </tr>
                     <tr>
@@ -84,11 +73,11 @@
                             <h:inputText
                                 required="true" 
                                 requiredMessage="Please Choose Staff Role!"
-                                value="#{userManagedBean.appuser.urole}"/>
+                                value="#{userController.user.urole}"/>
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Create Staff" action="#{userManagedBean.createUser()}"/>
+                <h:commandButton class="btn btn-primary" value="Save Staff Information" action="#{userController.editUser()}"/>
             </h:form>
         </ui:define>
     </ui:composition>
