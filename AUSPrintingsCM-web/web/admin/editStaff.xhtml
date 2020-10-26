@@ -5,6 +5,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true" value="#{editStaff.staffId}"/>
+            <f:viewAction action="#{editStaff.getStaffById()}"/>
+        </f:metadata>
         <ui:define name="content">
             <h:form>
                 <table class="table table-bordered">
@@ -16,7 +20,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Staff First Name!"
-                                value="#{userController.user.ufirstname}"/>
+                                value="#{editStaff.staff.ufirstname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -27,7 +31,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Staff Last Name!"
-                                value="#{userController.user.ulastname}"/>
+                                value="#{editStaff.staff.ulastname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -38,7 +42,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Choose Staff Gender!"
-                                value="#{userController.user.ugender}"/>
+                                value="#{editStaff.staff.ugender}"/>
                         </td>
                     </tr>
                     <tr>
@@ -49,7 +53,7 @@
                             <h:inputText converterMessage="Please follow date format mm/dd/yyyy!"
                                          required="true" 
                                          requiredMessage="Please Enter Staff Date of Birth!"
-                                         value="#{userController.user.udob}">
+                                         value="#{editStaff.staff.udob}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                             </h:inputText>
                         </td>
@@ -62,7 +66,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Choose Staff Email!"
-                                value="#{userController.user.uemail}"/>
+                                value="#{editStaff.staff.uemail}"/>
                         </td>
                     </tr>
                     <tr>
@@ -73,11 +77,11 @@
                             <h:inputText
                                 required="true" 
                                 requiredMessage="Please Choose Staff Role!"
-                                value="#{userController.user.urole}"/>
+                                value="#{editStaff.staff.urole}"/>
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Save Staff Information" action="#{userController.editUser()}"/>
+                <h:commandButton class="btn btn-primary" value="Save Staff Information" action="#{editStaff.editStaff()}"/>
             </h:form>
         </ui:define>
     </ui:composition>

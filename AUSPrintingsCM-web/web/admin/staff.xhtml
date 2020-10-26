@@ -6,7 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
         <f:metadata>
-            <f:viewParam name="id" required="true"/>
+            <f:viewParam name="id" required="true" value="#{staffDetail.staffId}"/>
+            <f:viewAction action="#{staffDetail.getStaffById()}"/>
         </f:metadata>
         <ui:define name="content">
             <h2 class="text-center">Staff Details</h2>
@@ -17,7 +18,7 @@
                             <h:outputLabel value="First Name: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.ufirstname}"/>
+                            <h:outputText value="#{staffDetail.staff.ufirstname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -25,7 +26,7 @@
                             <h:outputLabel value="Last Name: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.ulastname}"/>
+                            <h:outputText value="#{staffDetail.staff.ulastname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -33,7 +34,7 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.ugender}"/>
+                            <h:outputText value="#{staffDetail.staff.ugender}"/>
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +42,7 @@
                             <h:outputLabel value="Date of Birth: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.udob}">
+                            <h:outputText value="#{staffDetail.staff.udob}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
                             </h:outputText>
                         </td>
@@ -51,7 +52,7 @@
                             <h:outputLabel value="Email: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.uemail}"/>
+                            <h:outputText value="#{staffDetail.staff.uemail}"/>
                         </td>
                     </tr>
                     <tr>
@@ -59,11 +60,11 @@
                             <h:outputLabel value="Role: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{userController.user.urole}"/>
+                            <h:outputText value="#{staffDetail.staff.urole}"/>
                         </td>
                     </tr>
                 </table>
-                <h:button class="btn btn-primary" value="Edit Staff" outcome="/faces/admin/editStaff.xhtml"/>
+                <h:commandButton class="btn btn-primary" value="Edit Staff" action="#{staffDetail.editStaffById()}"/>
             </h:form>
         </ui:define>
     </ui:composition>

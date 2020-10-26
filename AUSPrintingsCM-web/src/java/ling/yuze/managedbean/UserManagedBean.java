@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- */
 package ling.yuze.managedbean;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import ling.yuze.repository.UserRepository;
 import ling.yuze.repository.entity.Appuser;
@@ -21,30 +20,26 @@ import ling.yuze.repository.entity.Appuser;
 public class UserManagedBean implements Serializable{
     @EJB
     private UserRepository userRepository;
-    private Appuser appuser = new Appuser();
     
-    public Appuser getAppuser() { return appuser; }
-    public void setAppuser(Appuser user) { appuser = user; }
+    @Inject
+    Principal principal;
     
-    public String createUser() {
-        try {
-            userRepository.createUser(appuser);
-            return "/faces/admin/allStaff.xhtml?faces-redirect=true";
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    //private Appuser currentUser;   
+    
+    //public Appuser getCurrentUser() { return currentUser; }
+    //public void setCurrentUser(Appuser user) { currentUser = user; }
+    
+    public void createUser(Appuser user) throws Exception {
+        userRepository.createUser(user);
     }
     
     public void editUser(Appuser user) throws Exception{
         userRepository.updateUser(user);
     }
     
-    public void deleteUserById (Integer id) {
+    public void deleteUser (Appuser user) {
         try {
-            Appuser user = getUserById(id);
-            if (user != null)
-                userRepository.deleteUser(user);
+            userRepository.deleteUser(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,20 +48,17 @@ public class UserManagedBean implements Serializable{
     public Appuser getUserById(Integer id) {
         try {
             Appuser user = userRepository.getUserById(id);
-            if (user != null) {
-                return user;
-            }
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
     
-    public String getUserByEmail(String email) {
+    public Appuser getUserByEmail(String email) {
         try {
             Appuser user = userRepository.getUserByEmail(email);
-            if (user != null)
-                this.appuser = user;
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
         }

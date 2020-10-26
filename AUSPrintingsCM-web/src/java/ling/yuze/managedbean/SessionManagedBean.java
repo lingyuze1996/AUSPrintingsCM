@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ling.yuze;
+package ling.yuze.managedbean;
 
 import java.io.Serializable;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Named
 @SessionScoped
-public class Staff implements Serializable {
+public class SessionManagedBean implements Serializable {
     @Inject
     Principal currentUser;
     
@@ -37,7 +26,7 @@ public class Staff implements Serializable {
         return username;
     }
     
-    public boolean isVacant() {
+    public boolean isAnonymous() {
         return getUsername().equals("ANONYMOUS");
     }
     

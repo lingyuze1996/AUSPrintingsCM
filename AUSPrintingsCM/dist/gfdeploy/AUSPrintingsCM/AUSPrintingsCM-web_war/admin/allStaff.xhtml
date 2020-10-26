@@ -11,7 +11,7 @@
                 <table class="table table-bordered table-striped">
                     <tr>
                         <td>
-                            <h:outputLabel value="Id"/>
+                            <h:outputLabel value="StaffId"/>
                         </td>
                         <td>
                             <h:outputLabel value="Name"/>
@@ -30,7 +30,7 @@
                         </td>
                     </tr>
 
-                    <ui:repeat value="#{userManagedBean.allUsers}" var="user">
+                    <ui:repeat value="#{allStaff.allStaff}" var="user">
                         <tr>
                             <td>
                                 <h:outputText value="#{user.uid}"/>
@@ -53,11 +53,9 @@
                                 <h:outputText value="#{user.uemail}"/>
                             </td>
                             <td>
-
-                                <h:commandLink value="View | " action="#{userController.getUserDetailsById(user.uid)}"/>
-                                <h:commandLink value="Edit | " action="#{userController.EditUserDetailsById(user.uid)}"/>
-                                <h:commandLink value="Delete" action="#{userController.deleteUserById(user.uid)}"/>
-
+                                <h:commandLink value="View | " action="#{allStaff.viewStaffById(user.uid)}"/>
+                                <h:commandLink value="Edit | " action="#{allStaff.editStaffById(user.uid)}"/>
+                                <h:commandLink value="Delete" action="#{allStaff.deleteStaff(user)}"/>
                             </td>
                         </tr>
                     </ui:repeat>
