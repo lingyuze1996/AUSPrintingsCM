@@ -14,24 +14,24 @@ import javax.servlet.http.HttpSession;
 
 @Named
 @SessionScoped
-public class SessionManagedBean implements Serializable {
+public class IdentityManagedBean implements Serializable {
     @Inject
     Principal currentUser;
     
     @Inject
     HttpSession session;
     
+    private String username;
+    
     public String getUsername() {
-        String username = currentUser.getName();
-        return username;
+        return currentUser.getName();
     }
     
-    public boolean isAnonymous() {
-        return getUsername().equals("ANONYMOUS");
+    public void setUsername(String username) {
+        this.username = username;
     }
     
-    public String logOut() {
+    public void invalidate() {
         session.invalidate();
-        return "/faces/index.xhtml";
     }
 }

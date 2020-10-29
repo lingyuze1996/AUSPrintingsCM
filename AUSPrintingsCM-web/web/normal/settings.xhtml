@@ -7,12 +7,62 @@
 
     <ui:composition template="/layout.xhtml">
         <ui:define name="content">
-            #{userManagedBean.getUserByEmail("normal").ufirstname}
-            <br/>
-            #{userManagedBean.getUserByEmail("normal").ugender}
-            <br/>
-            #{userManagedBean.getUserByEmail("normal").upassword}
-            <br/>
+            <h2 class="text-center">My Profile</h2>
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="First Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.ufirstname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Last Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.ulastname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Gender: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.ugender}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Date of Birth: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.udob}">
+                                <f:convertDateTime pattern="MM/dd/yyyy"/>
+                            </h:outputText>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Email: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.uemail}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Role: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{profileSetting.currentUser.urole}"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:commandButton class="btn btn-primary" value="Log out" action="#{profileSetting.logOut()}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>

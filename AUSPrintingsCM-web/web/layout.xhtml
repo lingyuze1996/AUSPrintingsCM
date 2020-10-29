@@ -17,7 +17,7 @@
         <div class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
-                    <h:link outcome="/faces/normal/settings.xhtml" value="Home" class="navbar-brand"/>
+                    <h:link outcome="/faces/index.xhtml" value="Home" class="navbar-brand"/>
                 </div>
 
                 <ul class="nav navbar-nav">
@@ -27,18 +27,8 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <h:link rendered="#{sessionManagedBean.anonymous}" outcome="/faces/normal/index.xhtml">
-                            <span class="glyphicon glyphicon-log-in"></span> Login
-                        </h:link>
-                    </li>
-                    <li>
-                        <h:link rendered="#{!sessionManagedBean.anonymous}" outcome="/faces/normal/settings.xhtml">
+                        <h:link rendered="true" outcome="/faces/normal/settings.xhtml">
                             <span class="glyphicon glyphicon-cog"></span> Personal Settings
-                        </h:link>
-                    </li>
-                    <li>
-                        <h:link rendered="#{!sessionManagedBean.anonymous}" outcome="#{sessionManagedBean.logOut()}">
-                            <span class="glyphicon glyphicon-log-out"></span> Log Out
                         </h:link>
                     </li>
                 </ul>
