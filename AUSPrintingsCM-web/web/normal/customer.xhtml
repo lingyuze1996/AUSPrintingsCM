@@ -9,8 +9,11 @@
             <f:viewParam name="id" required="true" value="#{customerDetail.customerId}"/>
             <f:viewAction action="#{customerDetail.getCustomerById()}"/>
         </f:metadata>
+        
         <ui:define name="content">
             <h2 class="text-center">Customer Details</h2>
+            <br/>
+
             <h:form>
                 <table class="table table-bordered">
                     <tr>
@@ -62,6 +65,49 @@
                         </td>
                     </tr>
                 </table>
+
+                <h2 class="text-center">Contacts List</h2>
+                <br/>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Name"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Position"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Phone Number"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Email"/>
+                        </td>
+                    </tr>
+
+                    <ui:repeat value="#{customerDetail.customer.contactCollection}" var="contact">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{contact.contfirstname} #{contact.contlastname}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contposition}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contphoneno}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contemail}"/>
+                            </td>
+                        
+                            <!--td>
+                                <h:commandLink value="View | " action="{allCustomers.viewCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Edit | " action="{allCustomers.editCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Delete" action="{allCustomers.deleteCustomer(customer)}"/>
+                            </td-->
+                        </tr>
+                    </ui:repeat>
+                </table>
+
                 <h:commandButton class="btn btn-primary" value="Edit Customer" action="#{customerDetail.editCustomerById()}"/>
             </h:form>
         </ui:define>
