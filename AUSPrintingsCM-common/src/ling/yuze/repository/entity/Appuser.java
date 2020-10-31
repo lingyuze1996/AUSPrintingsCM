@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -84,7 +85,7 @@ public class Appuser implements Serializable {
     @Size(min = 1, max = 64)
     @Column(name = "UPASSWORD")
     private String upassword;
-    @OneToMany(mappedBy = "uid")
+    @OneToMany(mappedBy = "uid", fetch = FetchType.EAGER)
     private Collection<Customer> customerCollection;
 
     public Appuser() {

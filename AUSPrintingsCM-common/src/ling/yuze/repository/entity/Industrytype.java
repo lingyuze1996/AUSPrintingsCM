@@ -10,6 +10,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,7 +44,7 @@ public class Industrytype implements Serializable {
     @Size(max = 50)
     @Column(name = "IDESC")
     private String idesc;
-    @OneToMany(mappedBy = "iname")
+    @OneToMany(mappedBy = "iname", fetch = FetchType.EAGER)
     private Collection<Customer> customerCollection;
 
     public Industrytype() {

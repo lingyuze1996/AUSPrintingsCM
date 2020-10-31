@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -77,13 +78,13 @@ public class Customer implements Serializable {
     @NotNull
     @Column(name = "CUSTFOUNDEDYEAR")
     private int custfoundedyear;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "custid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "custid", fetch = FetchType.EAGER)
     private Collection<Contact> contactCollection;
     @JoinColumn(name = "UID", referencedColumnName = "UID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Appuser uid;
     @JoinColumn(name = "INAME", referencedColumnName = "INAME")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Industrytype iname;
 
     public Customer() {
