@@ -36,8 +36,7 @@ public class ProfileSetting implements Serializable {
         userManagedBean = (UserManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "userManagedBean");
         
-        String username = identityManagedBean.getUsername();
-        currentUser = userManagedBean.getUserByEmail(username);               
+        currentUser = identityManagedBean.getCurrentUser();               
     }
 
     public Appuser getCurrentUser() {

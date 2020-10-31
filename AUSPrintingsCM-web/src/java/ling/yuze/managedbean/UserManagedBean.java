@@ -20,14 +20,6 @@ public class UserManagedBean implements Serializable{
     @EJB
     private UserRepository userRepository;
     
-    @Inject
-    Principal principal;
-    
-    //private Appuser currentUser;   
-    
-    //public Appuser getCurrentUser() { return currentUser; }
-    //public void setCurrentUser(Appuser user) { currentUser = user; }
-    
     public void createUser(Appuser user) throws Exception {
         userRepository.createUser(user);
     }

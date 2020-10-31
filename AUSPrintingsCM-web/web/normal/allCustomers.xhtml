@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <h2 class="text-center ">All Managed Customers</h2>
+            <h:form>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Id"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="ABN"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Name"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Central Telephone Number"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Industry"/>
+                        </td>
+                       
+                    </tr>
+
+                    <ui:repeat value="#{allCustomers.managedCustomers}" var="customer">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{customer.custid}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custabn}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custname}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custcentraltel}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.iname.iname}"/>
+                            </td>
+                            
+                            <td>
+                                <h:commandLink value="View | " action="#{allCustomers.viewCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Edit | " action="#{allCustomers.editCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Delete" action="#{allCustomers.deleteCustomer(customer)}"/>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </h:form>
+            <h:button outcome="/faces/normal/addCustomer.xhtml" class="btn btn-primary" value="Add Customer"/>
+            <h:messages class="none"/>
+        </ui:define>
+    </ui:composition>
+</html>
+
