@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
+import ling.yuze.repository.entity.Industrytype;
 
 /**
  *
@@ -62,7 +63,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void createContact(Contact contact) throws Exception {
-        em.persist(contact);
+        Customer customer = contact.getCustid();
+        customer.getContactList().add(contact);
+        em.merge(customer);
     }
 
     @Override
@@ -72,9 +75,24 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void deleteContact(Contact contact) throws Exception {
-        if (!em.contains(contact))
-            contact = em.merge(contact);
-        em.remove(contact);
+        Customer customer = contact.getCustid();
+        if (customer == null)
+            return;
+        
+        customer.getContactList().remove(contact);
+        em.merge(customer);
+    }
+
+    @Override
+    public Industrytype getIndustryById(String industryId) throws Exception {
+        return em.find(Industrytype.class, industryId);
+    }
+    
+    
+
+    @Override
+    public List<Industrytype> getAllIndustries() throws Exception {
+        return em.createNamedQuery("Industrytype.findAll").getResultList();
     }
     
     

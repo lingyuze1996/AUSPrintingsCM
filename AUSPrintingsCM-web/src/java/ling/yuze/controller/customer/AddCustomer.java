@@ -1,5 +1,6 @@
 package ling.yuze.controller.customer;
 
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
@@ -11,6 +12,7 @@ import ling.yuze.managedbean.CustomerManagedBean;
 import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Appuser;
 import ling.yuze.repository.entity.Customer;
+import ling.yuze.repository.entity.Industrytype;
 
 /**
  *
@@ -27,6 +29,9 @@ public class AddCustomer {
     private IdentityManagedBean identityManagedBean;
     
     private Customer customer;
+    private String industry;
+    
+    private List<Industrytype> industries;
     
     @PostConstruct
     public void init() {       
@@ -41,6 +46,16 @@ public class AddCustomer {
         
         Appuser currentUser = identityManagedBean.getCurrentUser();
         customer.setUid(currentUser);
+        
+        industries = customerManagedBean.getAllIndustries();        
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 
     public Customer getCustomer() {
@@ -51,8 +66,18 @@ public class AddCustomer {
         this.customer = customer;
     }
     
+    public List<Industrytype> getIndustries() {
+        return industries;
+    }
+
+    public void setIndustries(List<Industrytype> industries) {
+        this.industries = industries;
+    }
+    
     public String createCustomer() {
         try {
+            Industrytype industryType = customerManagedBean.getIndustryById(industry);
+            customer.setIname(industryType);
             customerManagedBean.createCustomer(customer);
             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been created successfully"));
             return "/faces/normal/allCustomers?faces-redirect=true";

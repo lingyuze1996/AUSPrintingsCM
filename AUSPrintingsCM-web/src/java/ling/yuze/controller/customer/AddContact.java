@@ -55,8 +55,7 @@ public class AddContact {
         try {
             Customer customer = customerManagedBean.getCustomerById(customerId);            
             contact.setCustid(customer);            
-            customer.getContactList().add(contact);
-            customerManagedBean.editCustomer(customer);
+            customerManagedBean.createContact(contact);
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been created successfully"));
             return "/faces/normal/customer?faces-redirect=true&id=" + customerId;

@@ -30,5 +30,6 @@ public interface CustomerRepository {
     //void createIndustry(Industrytype industry) throws Exception;
     //void updateIndustry(Industrytype industry) throws Exception;
     //void deleteIndustry(Industrytype industry) throws Exception;
-    //Collection<Industrytype> getAllIndustries() throws Exception;
+    Industrytype getIndustryById(String industryId) throws Exception;
+    List<Industrytype> getAllIndustries() throws Exception;
 }

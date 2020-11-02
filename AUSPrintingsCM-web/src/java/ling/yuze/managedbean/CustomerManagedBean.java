@@ -8,6 +8,7 @@ import javax.inject.Named;
 import ling.yuze.repository.CustomerRepository;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
+import ling.yuze.repository.entity.Industrytype;
 
 /**
  *
@@ -91,6 +92,25 @@ public class CustomerManagedBean implements Serializable {
             e.printStackTrace();
         }
 
+        return null;
+    }
+    
+    public Industrytype getIndustryById(String id) {
+        try {
+            return customerRepository.getIndustryById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    public List<Industrytype> getAllIndustries() {
+        try {
+            return customerRepository.getAllIndustries();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

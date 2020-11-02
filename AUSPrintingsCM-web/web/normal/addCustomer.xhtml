@@ -72,6 +72,17 @@
                                 value="#{addCustomer.customer.custwebsite}"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Industry Type: "/>
+                        </td>
+                        <td>
+                            <h:selectOneMenu value="#{addCustomer.industry}">
+                                <f:selectItem noSelectionOption="true" itemLabel="Select An Industry Type"/>
+                                <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{addCustomer.industries}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
                 </table>
                 <h:commandButton class="btn btn-primary" value="Create Customer" action="#{addCustomer.createCustomer()}"/>
             </h:form>

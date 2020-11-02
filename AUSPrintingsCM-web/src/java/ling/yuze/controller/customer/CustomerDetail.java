@@ -64,7 +64,7 @@ public class CustomerDetail {
     public String deleteContact(Contact contact) {
         customerManagedBean.deleteContact(contact);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Contact has been deleted successfully")); 
-        return null;
+        return "/faces/normal/customer?faces-redirect=true&id=" + customerId;
     }
     
     public String editCustomerById() {
