@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ling.yuze.controller.customer;
 
 import java.io.Serializable;
@@ -16,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
 import ling.yuze.managedbean.IdentityManagedBean;
-import ling.yuze.managedbean.UserManagedBean;
 import ling.yuze.repository.entity.Appuser;
 import ling.yuze.repository.entity.Customer;
 

@@ -9,7 +9,7 @@
             <f:viewParam name="id" required="true" value="#{customerDetail.customerId}"/>
             <f:viewAction action="#{customerDetail.getCustomerById()}"/>
         </f:metadata>
-        
+
         <ui:define name="content">
             <h2 class="text-center">Customer Details</h2>
             <br/>
@@ -65,9 +65,12 @@
                         </td>
                     </tr>
                 </table>
+                <h:commandButton class="btn btn-primary" value="Edit Customer" action="#{customerDetail.editCustomerById()}"/>
+            </h:form>
 
-                <h2 class="text-center">Contacts List</h2>
-                <br/>
+            <h2 class="text-center">Contacts List</h2>
+            <br/>
+            <h:form>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <td>
@@ -84,7 +87,7 @@
                         </td>
                     </tr>
 
-                    <ui:repeat value="#{customerDetail.customer.contactCollection}" var="contact">
+                    <ui:repeat value="#{customerDetail.contacts}" var="contact">
                         <tr>
                             <td>
                                 <h:outputText value="#{contact.contfirstname} #{contact.contlastname}"/>
@@ -98,18 +101,18 @@
                             <td>
                                 <h:outputText value="#{contact.contemail}"/>
                             </td>
-                        
-                            <!--td>
-                                <h:commandLink value="View | " action="{allCustomers.viewCustomerById(customer.custid)}"/>
-                                <h:commandLink value="Edit | " action="{allCustomers.editCustomerById(customer.custid)}"/>
-                                <h:commandLink value="Delete" action="{allCustomers.deleteCustomer(customer)}"/>
-                            </td-->
+
+                            <td>
+                                <h:link value="View | " outcome="/faces/normal/contact?id=#{contact.contid}"/>
+                                <h:link value="Edit | " outcome="/faces/normal/editContact?id=#{contact.contid}"/>
+                                <h:commandLink value="Delete" action="#{customerDetail.deleteContact(contact)}"/>                                
+                            </td>
                         </tr>
                     </ui:repeat>
                 </table>
-
-                <h:commandButton class="btn btn-primary" value="Edit Customer" action="#{customerDetail.editCustomerById()}"/>
+                <h:button outcome="/faces/normal/addContact.xhtml?customerid=#{customerDetail.customerId}" class="btn btn-primary" value="Add Contact"/>
             </h:form>
+            <h:messages class="none"/>
         </ui:define>
     </ui:composition>
 </html>

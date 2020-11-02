@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 
 /**
@@ -52,4 +53,29 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public List<Customer> getAllCustomers() throws Exception {
         return em.createNamedQuery("Customer.findAll").getResultList();
     }
+
+    @Override
+    public Contact getContactById(Integer id) throws Exception {
+        Contact contact = em.find(Contact.class, id);
+        return contact;
+    }
+
+    @Override
+    public void createContact(Contact contact) throws Exception {
+        em.persist(contact);
+    }
+
+    @Override
+    public void updateContact(Contact contact) throws Exception {
+        em.merge(contact);
+    }
+
+    @Override
+    public void deleteContact(Contact contact) throws Exception {
+        if (!em.contains(contact))
+            contact = em.merge(contact);
+        em.remove(contact);
+    }
+    
+    
 }

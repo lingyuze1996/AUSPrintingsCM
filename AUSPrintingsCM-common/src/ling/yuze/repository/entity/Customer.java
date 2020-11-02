@@ -6,7 +6,7 @@
 package ling.yuze.repository.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -79,7 +79,7 @@ public class Customer implements Serializable {
     @Column(name = "CUSTFOUNDEDYEAR")
     private int custfoundedyear;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custid", fetch = FetchType.EAGER)
-    private Collection<Contact> contactCollection;
+    private List<Contact> contactList;
     @JoinColumn(name = "UID", referencedColumnName = "UID")
     @ManyToOne(fetch = FetchType.EAGER)
     private Appuser uid;
@@ -160,12 +160,12 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Contact> getContactCollection() {
-        return contactCollection;
+    public List<Contact> getContactList() {
+        return contactList;
     }
 
-    public void setContactCollection(Collection<Contact> contactCollection) {
-        this.contactCollection = contactCollection;
+    public void setContactList(List<Contact> contactList) {
+        this.contactList = contactList;
     }
 
     public Appuser getUid() {
@@ -193,6 +193,7 @@ public class Customer implements Serializable {
 
     @Override
     public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Customer)) {
             return false;
         }

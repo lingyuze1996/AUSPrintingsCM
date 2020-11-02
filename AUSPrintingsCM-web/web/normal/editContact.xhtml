@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true" value="#{editContact.contactId}"/>
+            <f:viewAction action="#{editContact.getContactById()}"/>
+        </f:metadata>
+        <ui:define name="content">
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="First Name: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Contact First Name!"
+                                value="#{editContact.contact.contfirstname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Last Name: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Contact Last Name!"
+                                value="#{editContact.contact.contlastname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Gender: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Choose Contact Gender!"
+                                value="#{editContact.contact.contgender}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Position: "/>
+                        </td>
+                        <td>
+                            <h:inputText
+                                required="true" 
+                                requiredMessage="Please Enter Contact Position!"
+                                value="#{editContact.contact.contposition}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Email: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Choose Contact Email!"
+                                value="#{editContact.contact.contemail}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Phone Number: "/>
+                        </td>
+                        <td>
+                            <h:inputText
+                                required="true" 
+                                requiredMessage="Please Enter Contact Phone Number!"
+                                value="#{editContact.contact.contphoneno}"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:commandButton class="btn btn-primary" value="Save Contact Information" action="#{editContact.editContact()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

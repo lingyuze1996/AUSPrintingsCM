@@ -5,6 +5,7 @@ package ling.yuze.repository;
 
 import java.util.List;
 import javax.ejb.Remote;
+import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 import ling.yuze.repository.entity.Industrytype;
 
@@ -20,6 +21,11 @@ public interface CustomerRepository {
     List<Customer> getAllCustomers() throws Exception;
     Customer getCustomerById(Integer customerId) throws Exception;
     List<Customer> getCustomersByUserId(Integer userId) throws Exception;
+    
+    void createContact(Contact contact) throws Exception;
+    void updateContact(Contact contact) throws Exception;
+    void deleteContact(Contact contact) throws Exception;
+    Contact getContactById(Integer contactId) throws Exception;
     
     //void createIndustry(Industrytype industry) throws Exception;
     //void updateIndustry(Industrytype industry) throws Exception;

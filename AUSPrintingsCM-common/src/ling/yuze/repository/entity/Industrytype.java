@@ -6,7 +6,7 @@
 package ling.yuze.repository.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +45,7 @@ public class Industrytype implements Serializable {
     @Column(name = "IDESC")
     private String idesc;
     @OneToMany(mappedBy = "iname", fetch = FetchType.EAGER)
-    private Collection<Customer> customerCollection;
+    private List<Customer> customerList;
 
     public Industrytype() {
     }
@@ -71,12 +71,12 @@ public class Industrytype implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Customer> getCustomerCollection() {
-        return customerCollection;
+    public List<Customer> getCustomerList() {
+        return customerList;
     }
 
-    public void setCustomerCollection(Collection<Customer> customerCollection) {
-        this.customerCollection = customerCollection;
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
     }
 
     @Override

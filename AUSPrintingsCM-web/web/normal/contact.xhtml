@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true" value="#{contactDetail.contactId}"/>
+            <f:viewAction action="#{contactDetail.getContactById()}"/>
+        </f:metadata>
+        <ui:define name="content">
+            <h2 class="text-center">Contact Details</h2>
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="First Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contfirstname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Last Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contlastname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Gender: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contgender}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Position: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contposition}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Email: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contemail}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Phone Number: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{contactDetail.contact.contphoneno}"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:commandButton class="btn btn-primary" value="Edit Contact" action="#{contactDetail.editContactById()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
