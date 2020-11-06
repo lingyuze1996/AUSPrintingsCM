@@ -4,12 +4,14 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.managedbean.UserManagedBean;
 import ling.yuze.repository.entity.Appuser;
+import ling.yuze.utility.Encryption;
 
 /**
  *
@@ -25,6 +27,9 @@ public class ProfileSetting implements Serializable {
     private IdentityManagedBean identityManagedBean;
     
     private Appuser currentUser;
+    private String newPassword;
+    private String newPasswordCheck;
+    private Boolean showPasswordForm;
     
     @PostConstruct
     public void init() {       
@@ -36,7 +41,8 @@ public class ProfileSetting implements Serializable {
         userManagedBean = (UserManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "userManagedBean");
         
-        currentUser = identityManagedBean.getCurrentUser();               
+        currentUser = identityManagedBean.getCurrentUser(); 
+        showPasswordForm = false;
     }
 
     public Appuser getCurrentUser() {
@@ -45,6 +51,60 @@ public class ProfileSetting implements Serializable {
 
     public void setCurrentUser(Appuser currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getNewPasswordCheck() {
+        return newPasswordCheck;
+    }
+
+    public void setNewPasswordCheck(String newPasswordCheck) {
+        this.newPasswordCheck = newPasswordCheck;
+    }
+
+    public Boolean getShowPasswordForm() {
+        return showPasswordForm;
+    }
+
+    public void setShowPasswordForm(Boolean showPasswordForm) {
+        this.showPasswordForm = showPasswordForm;
+    }
+    
+    public void hideForm() {
+        showPasswordForm = false;
+    }
+    
+    public void showForm() {
+        showPasswordForm = true;
+    }
+    
+    public void changePassword() {
+        if (newPassword == null || newPassword.isEmpty() || newPasswordCheck == null || newPasswordCheck.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Password Entry Empty! Please try again!")); 
+            return;
+        }
+        
+        if (!newPassword.equals(newPasswordCheck)) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Password not match! Please try again!")); 
+            return;
+        }
+        
+        String pwHash = Encryption.toSHA256(newPassword);
+        currentUser.setUpassword(pwHash);
+        try {
+            userManagedBean.editUser(currentUser);
+            hideForm();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Password updated successfully!")); 
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to change password!")); 
+        }
     }
     
     public String logOut() {

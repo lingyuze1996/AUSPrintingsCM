@@ -61,6 +61,22 @@
                         </td>
                     </tr>
                 </table>
+
+                <h:commandButton class="btn btn-danger" action="#{profileSetting.showForm()}" value="Reset Password">
+                    <f:ajax render="passwordForm"/>
+                </h:commandButton><br/><br/>
+
+                <h:panelGrid id="passwordForm" cellspacing="10" columns="2" style="#{profileSetting.showPasswordForm ? 'display:' : 'display:none'}">
+                    <h:outputLabel value="Please enter new password: "/>
+                    <h:inputSecret id="pw1" value="#{profileSetting.newPassword}"/>
+                    <h:outputLabel value="Please enter new password again: "/>
+                    <h:inputSecret id="pw2" value="#{profileSetting.newPasswordCheck}"/>
+                    <h:commandButton value="Submit" class="btn btn-primary" action="#{profileSetting.changePassword()}">
+                        <f:ajax render="passwordForm message" execute="pw1 pw2"/>
+                    </h:commandButton>
+                </h:panelGrid>
+                
+                <h:messages id="message" class="none"/>
                 <h:commandButton class="btn btn-primary pull-right" value="Log out" action="#{profileSetting.logOut()}"/>
             </h:form>
         </ui:define>
