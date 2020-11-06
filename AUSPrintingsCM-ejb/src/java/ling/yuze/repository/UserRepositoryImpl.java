@@ -8,6 +8,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import ling.yuze.repository.entity.Appuser;
 
 /**
@@ -56,4 +59,16 @@ public class UserRepositoryImpl implements UserRepository {
     public List<Appuser> getAllUsers() throws Exception {
         return em.createNamedQuery("Appuser.findAll").getResultList();
     }
+
+    @Override
+    public List<Appuser> searchByGender(Character gender) throws Exception {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(Appuser.class);
+        Root<Appuser> root = query.from(Appuser.class);
+        query.select(root).where(builder.equal(root.get("ugender").as(Character.class), gender));
+        List<Appuser> users = em.createQuery(query).getResultList();
+        return users;
+    }
+    
+    
 }

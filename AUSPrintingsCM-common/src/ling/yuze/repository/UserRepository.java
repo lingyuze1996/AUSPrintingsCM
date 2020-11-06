@@ -20,5 +20,5 @@ public interface UserRepository {
     Appuser getUserById(Integer id) throws Exception;
     Appuser getUserByEmail(String email) throws Exception;
     List<Appuser> getAllUsers() throws Exception;
-    //void changeUserPassword(Appuser user, String newPassword) throws Exception;
+    List<Appuser> searchByGender(Character gender) throws Exception;
 }

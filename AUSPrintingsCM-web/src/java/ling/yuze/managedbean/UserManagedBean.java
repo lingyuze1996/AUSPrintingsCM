@@ -62,6 +62,15 @@ public class UserManagedBean implements Serializable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+    
+    public List<Appuser> getUsersByGender(Character gender) {
+        try {
+            return userRepository.searchByGender(gender);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         return null;
     }

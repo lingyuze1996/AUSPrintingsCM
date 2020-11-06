@@ -28,6 +28,7 @@ public class AllStaff implements Serializable {
     @ManagedProperty(value="#{userManagedBean}")
     private UserManagedBean userManagedBean;
     private List<Appuser> allStaff;
+    private Character gender;
     
     @PostConstruct
     public void init() {
@@ -36,6 +37,7 @@ public class AllStaff implements Serializable {
         .getELResolver().getValue(elContext, null, "userManagedBean");
         
         allStaff = userManagedBean.getAllUsers();
+        gender = 'A';
     }
 
     public List<Appuser> getAllStaff() {
@@ -44,6 +46,14 @@ public class AllStaff implements Serializable {
 
     public void setAllStaff(List<Appuser> allStaff) {
         this.allStaff = allStaff;
+    }
+
+    public Character getGender() {
+        return gender;
+    }
+
+    public void setGender(Character gender) {
+        this.gender = gender;
     }
     
     public String viewStaffById(Integer id) {
@@ -60,11 +70,19 @@ public class AllStaff implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been deleted successfully")); 
             
             // Refresh Staff List
-            allStaff = userManagedBean.getAllUsers();
+            filterByGender();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete staff")); 
         }
         
+        return null;
+    }
+    
+    public String filterByGender() {
+        if (gender.equals('A'))
+            allStaff = userManagedBean.getAllUsers();
+        else
+            allStaff = userManagedBean.getUsersByGender(gender);
         return null;
     }
 }
