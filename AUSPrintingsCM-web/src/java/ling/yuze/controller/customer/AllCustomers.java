@@ -13,6 +13,7 @@ import ling.yuze.managedbean.CustomerManagedBean;
 import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Appuser;
 import ling.yuze.repository.entity.Customer;
+import ling.yuze.repository.entity.Industrytype;
 
 /**
  *
@@ -28,6 +29,9 @@ public class AllCustomers implements Serializable {
     private IdentityManagedBean identityManagedBean;
     
     private List<Customer> managedCustomers;
+    private List<Industrytype> industries;
+    private String industry;
+    private String state;
     
     @PostConstruct
     public void init() {
@@ -38,8 +42,36 @@ public class AllCustomers implements Serializable {
         identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "identityManagedBean");
         
+        industries = customerManagedBean.getAllIndustries();
+        state = "All";
+        industry = "All";
+        
         Appuser currentUser = identityManagedBean.getCurrentUser();
         managedCustomers = customerManagedBean.getCustomersByUserId(currentUser.getUid());
+    }
+
+    public List<Industrytype> getIndustries() {
+        return industries;
+    }
+
+    public void setIndustries(List<Industrytype> industries) {
+        this.industries = industries;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public List<Customer> getManagedCustomers() {
@@ -48,6 +80,10 @@ public class AllCustomers implements Serializable {
 
     public void setManagedCustomers(List<Customer> managedCustomers) {
         this.managedCustomers = managedCustomers;
+    }
+    
+    public void filter() {
+        managedCustomers = customerManagedBean.searchByIndustryAndState(industry, state);
     }
     
     public String viewCustomerById(Integer id) {

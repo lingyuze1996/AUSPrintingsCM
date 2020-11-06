@@ -113,4 +113,13 @@ public class CustomerManagedBean implements Serializable {
         }
         return null;
     }
+    
+    public List<Customer> searchByIndustryAndState(String industry, String state) {
+        try {
+            return customerRepository.searchCustomersByIndustryAndState(industry, state);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

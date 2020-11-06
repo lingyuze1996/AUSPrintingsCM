@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 import ling.yuze.repository.entity.Industrytype;
@@ -15,6 +16,7 @@ import ling.yuze.repository.entity.Industrytype;
  */
 @Stateless
 public class CustomerRepositoryImpl implements CustomerRepository {
+
     @PersistenceContext(unitName = "AUSPrintingsCM-ejbPU")
     private EntityManager em;
 
@@ -30,18 +32,18 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void deleteCustomer(Customer customer) throws Exception {
-        if (!em.contains(customer))
+        if (!em.contains(customer)) {
             customer = em.merge(customer);
+        }
         em.remove(customer);
     }
-    
-    
+
     @Override
     public Customer getCustomerById(Integer id) throws Exception {
         Customer customer = em.find(Customer.class, id);
         return customer;
     }
-    
+
     @Override
     public List<Customer> getCustomersByUserId(Integer userId) throws Exception {
         Query q = em.createNamedQuery("Customer.findByUserid");
@@ -76,9 +78,10 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public void deleteContact(Contact contact) throws Exception {
         Customer customer = contact.getCustid();
-        if (customer == null)
+        if (customer == null) {
             return;
-        
+        }
+
         customer.getContactList().remove(contact);
         em.merge(customer);
     }
@@ -87,13 +90,37 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public Industrytype getIndustryById(String industryId) throws Exception {
         return em.find(Industrytype.class, industryId);
     }
-    
-    
 
     @Override
     public List<Industrytype> getAllIndustries() throws Exception {
         return em.createNamedQuery("Industrytype.findAll").getResultList();
     }
-    
-    
+
+    @Override
+    public List<Customer> searchCustomersByIndustryAndState(String industry, String state) throws Exception {
+        if (industry.toLowerCase().equals("all") && state.toLowerCase().equals("all")) {
+            return this.getAllCustomers();
+        } else if (industry.toLowerCase().equals("all")) {
+            TypedQuery<Customer> q = em.createQuery(
+                    "SELECT c FROM Customer c "
+                    + "WHERE c.custaddress LIKE :state", Customer.class);
+            q.setParameter("state", "%" + state + "%");
+            return q.getResultList();
+        } else if (state.toLowerCase().equals("all")) {
+            TypedQuery<Customer> q = em.createQuery(
+                    "SELECT c FROM Customer c "
+                    + "WHERE c.iname.iname = :industry", Customer.class);
+            q.setParameter("industry", industry);
+            return q.getResultList();
+        } else {
+            TypedQuery<Customer> q = em.createQuery(
+                    "SELECT c FROM Customer c "
+                    + "WHERE c.iname.iname = :industry "
+                    + "AND c.custaddress LIKE :state", Customer.class);
+            q.setParameter("state", "%" + state + "%");
+            q.setParameter("industry", industry);
+            return q.getResultList();
+        }
+    }
+
 }

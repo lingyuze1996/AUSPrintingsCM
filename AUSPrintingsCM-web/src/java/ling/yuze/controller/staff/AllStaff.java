@@ -10,7 +10,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;

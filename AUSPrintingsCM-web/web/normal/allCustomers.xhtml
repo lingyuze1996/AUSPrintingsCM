@@ -8,6 +8,28 @@
         <ui:define name="content">
             <h2 class="text-center ">All Managed Customers</h2>
             <h:form>
+                <h:outputLabel value="Industry Type: "/>
+                <h:selectOneMenu style="margin-right: 8px" value="#{allCustomers.industry}">
+                    <f:selectItem itemValue="All" itemLabel="All"/>
+                    <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{allCustomers.industries}"/>
+                </h:selectOneMenu>
+                
+                <h:outputLabel style="margin-left: 16px" value="State: "/>
+                <h:selectOneMenu style="margin-left: 8px" value="#{allCustomers.state}">
+                    <f:selectItem itemLabel="All" itemValue="All"/>
+                    <f:selectItem itemLabel="ACT" itemValue="ACT"/>
+                    <f:selectItem itemLabel="NSW" itemValue="NSW"/>
+                    <f:selectItem itemLabel="NT" itemValue="NT"/>
+                    <f:selectItem itemLabel="QLD" itemValue="QLD"/>
+                    <f:selectItem itemLabel="SA" itemValue="SA"/>
+                    <f:selectItem itemLabel="TAS" itemValue="TAS"/>
+                    <f:selectItem itemLabel="WA" itemValue="WA"/>
+                    <f:selectItem itemLabel="VIC" itemValue="VIC"/>
+                </h:selectOneMenu>
+                <h:commandButton style="margin-left: 20px" class="btn btn-primary" value="Filter" action="#{allCustomers.filter()}"/>
+            </h:form>
+            <br/>
+            <h:form>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <td>
@@ -25,7 +47,7 @@
                         <td>
                             <h:outputLabel value="Industry"/>
                         </td>
-                       
+
                     </tr>
 
                     <ui:repeat value="#{allCustomers.managedCustomers}" var="customer">
@@ -45,7 +67,7 @@
                             <td>
                                 <h:outputText value="#{customer.iname.iname}"/>
                             </td>
-                            
+
                             <td>
                                 <h:commandLink value="View | " action="#{allCustomers.viewCustomerById(customer.custid)}"/>
                                 <h:commandLink value="Edit | " action="#{allCustomers.editCustomerById(customer.custid)}"/>

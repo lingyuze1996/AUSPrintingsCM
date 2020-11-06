@@ -32,4 +32,6 @@ public interface CustomerRepository {
     //void deleteIndustry(Industrytype industry) throws Exception;
     Industrytype getIndustryById(String industryId) throws Exception;
     List<Industrytype> getAllIndustries() throws Exception;
+
+    public List<Customer> searchCustomersByIndustryAndState(String industry, String state) throws Exception;
 }
