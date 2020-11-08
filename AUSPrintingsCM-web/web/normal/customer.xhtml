@@ -64,6 +64,14 @@
                             <h:outputText value="#{customerDetail.customer.custfoundedyear}"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Industry: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.iid.iname}"/>
+                        </td>
+                    </tr>
                 </table>
                 <h:commandButton class="btn btn-primary" value="Edit Customer" action="#{customerDetail.editCustomerById()}"/>
             </h:form>

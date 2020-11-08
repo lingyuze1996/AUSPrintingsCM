@@ -43,7 +43,7 @@ public class AllIndustries implements Serializable {
     }
     
     public String editIndustry(Industrytype industry) {
-        return "/faces/admin/editIndustry?faces-redirect=true&id=" + industry.getIname();
+        return "/faces/admin/editIndustry?faces-redirect=true&id=" + industry.getIid();
     }
     
     public String deleteIndustry(Industrytype industry) {

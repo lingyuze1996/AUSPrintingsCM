@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ling.yuze.repository.entity;
 
 import java.io.Serializable;
@@ -27,6 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Industrytype.findAll", query = "SELECT i FROM Industrytype i")
+    , @NamedQuery(name = "Industrytype.findByIid", query = "SELECT i FROM Industrytype i WHERE i.iid = :iid")
     , @NamedQuery(name = "Industrytype.findByIname", query = "SELECT i FROM Industrytype i WHERE i.iname = :iname")
     , @NamedQuery(name = "Industrytype.findByIdesc", query = "SELECT i FROM Industrytype i WHERE i.idesc = :idesc")})
 public class Industrytype implements Serializable {
@@ -45,14 +51,19 @@ public class Industrytype implements Serializable {
     @Size(max = 50)
     @Column(name = "IDESC")
     private String idesc;
-    @OneToMany(mappedBy = "iname", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "iid", fetch = FetchType.EAGER)
     private List<Customer> customerList;
 
     public Industrytype() {
     }
 
-    public Industrytype(Integer id) {
-        iid = id;
+    public Industrytype(Integer iid) {
+        this.iid = iid;
+    }
+
+    public Industrytype(Integer iid, String iname) {
+        this.iid = iid;
+        this.iname = iname;
     }
 
     public Integer getIid() {
@@ -91,7 +102,7 @@ public class Industrytype implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (iname != null ? iname.hashCode() : 0);
+        hash += (iid != null ? iid.hashCode() : 0);
         return hash;
     }
 
@@ -102,7 +113,7 @@ public class Industrytype implements Serializable {
             return false;
         }
         Industrytype other = (Industrytype) object;
-        if ((this.iname == null && other.iname != null) || (this.iname != null && !this.iname.equals(other.iname))) {
+        if ((this.iid == null && other.iid != null) || (this.iid != null && !this.iid.equals(other.iid))) {
             return false;
         }
         return true;
@@ -110,7 +121,7 @@ public class Industrytype implements Serializable {
 
     @Override
     public String toString() {
-        return "ling.yuze.repository.entity.Industrytype[ iname=" + iname + " ]";
+        return "ling.yuze.repository.entity.Industrytype[ iid=" + iid + " ]";
     }
     
 }

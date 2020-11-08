@@ -109,13 +109,13 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         } else if (state.toLowerCase().equals("all")) {
             TypedQuery<Customer> q = em.createQuery(
                     "SELECT c FROM Customer c "
-                    + "WHERE c.iname.iname = :industry", Customer.class);
+                    + "WHERE c.iid.iname = :industry", Customer.class);
             q.setParameter("industry", industry);
             return q.getResultList();
         } else {
             TypedQuery<Customer> q = em.createQuery(
                     "SELECT c FROM Customer c "
-                    + "WHERE c.iname.iname = :industry "
+                    + "WHERE c.iid.iname = :industry "
                     + "AND c.custaddress LIKE :state", Customer.class);
             q.setParameter("state", "%" + state + "%");
             q.setParameter("industry", industry);

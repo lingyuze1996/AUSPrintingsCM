@@ -5,6 +5,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true" value="#{editCustomer.id}"/>
+            <f:viewAction action="#{editCustomer.getCustomerById()}"/>
+        </f:metadata>
         <ui:define name="content">
             <h:form>
                 <table class="table table-bordered">
@@ -16,7 +20,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter ABN!"
-                                value="#{addCustomer.customer.custabn}"/>
+                                value="#{editCustomer.customer.custabn}"/>
                         </td>
                     </tr>
                     <tr>
@@ -27,18 +31,7 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Customer Name!"
-                                value="#{addCustomer.customer.custname}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <h:outputLabel value="Founded Year: "/>
-                        </td>
-                        <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter Founded Year!"
-                                value="#{addCustomer.customer.custfoundedyear}"/>
+                                value="#{editCustomer.customer.custname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -49,7 +42,18 @@
                             <h:inputText 
                                 required="true" 
                                 requiredMessage="Please Enter Customer Address!"
-                                value="#{addCustomer.customer.custaddress}"/>
+                                value="#{editCustomer.customer.custaddress}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Founded Year: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please enter founded year!"
+                                value="#{editCustomer.customer.custfoundedyear}"/>
                         </td>
                     </tr>
                     <tr>
@@ -57,19 +61,19 @@
                             <h:outputLabel value="Central Telephone Number: "/>
                         </td>
                         <td>
-                            <h:inputText
+                            <h:inputText 
                                 required="true" 
-                                requiredMessage="Please Enter Customer Central Telephone Number!"
-                                value="#{addCustomer.customer.custcentraltel}"/>
+                                requiredMessage="Please enter central telephone number!"
+                                value="#{editCustomer.customer.custcentraltel}"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <h:outputLabel value="Customer Website: "/>
+                            <h:outputLabel value="Website: "/>
                         </td>
                         <td>
                             <h:inputText
-                                value="#{addCustomer.customer.custwebsite}"/>
+                                value="#{editCustomer.customer.custwebsite}"/>
                         </td>
                     </tr>
                     <tr>
@@ -77,13 +81,13 @@
                             <h:outputLabel value="Industry Type: "/>
                         </td>
                         <td>
-                            <h:selectOneMenu value="#{addCustomer.industry}">
-                                <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{addCustomer.industries}"/>
+                            <h:selectOneMenu value="#{editCustomer.industry}">
+                                <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{editCustomer.industries}"/>
                             </h:selectOneMenu>
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Create Customer" action="#{addCustomer.createCustomer()}"/>
+                <h:commandButton class="btn btn-primary" value="Save Customer Information" action="#{editCustomer.editCustomer()}"/>
             </h:form>
         </ui:define>
     </ui:composition>
