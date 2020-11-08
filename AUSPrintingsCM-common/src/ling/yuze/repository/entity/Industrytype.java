@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ling.yuze.repository.entity;
 
 import java.io.Serializable;
@@ -11,6 +6,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,6 +33,10 @@ public class Industrytype implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IID")
+    private Integer iid;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -50,8 +51,16 @@ public class Industrytype implements Serializable {
     public Industrytype() {
     }
 
-    public Industrytype(String iname) {
-        this.iname = iname;
+    public Industrytype(Integer id) {
+        iid = id;
+    }
+
+    public Integer getIid() {
+        return iid;
+    }
+
+    public void setIid(Integer iid) {
+        this.iid = iid;
     }
 
     public String getIname() {

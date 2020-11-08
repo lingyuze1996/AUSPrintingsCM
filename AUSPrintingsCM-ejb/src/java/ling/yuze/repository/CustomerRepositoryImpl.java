@@ -87,7 +87,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public Industrytype getIndustryById(String industryId) throws Exception {
+    public Industrytype getIndustryById(Integer industryId) throws Exception {
         return em.find(Industrytype.class, industryId);
     }
 
@@ -139,6 +139,17 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     @Override
     public void updateIndustry(Industrytype industry) throws Exception {
         em.merge(industry);
+    }
+
+    @Override
+    public Industrytype getIndustryByName(String industry) throws Exception {
+        Query q = em.createNamedQuery("Industrytype.findByIname");
+        q.setParameter("iname", industry);
+        List<Industrytype> result = q.getResultList();
+        if (result.isEmpty())
+            return null;
+        
+        return result.get(0);
     }
 
 }

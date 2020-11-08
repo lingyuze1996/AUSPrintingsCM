@@ -76,8 +76,8 @@ public class AddCustomer {
     
     public String createCustomer() {
         try {
-            Industrytype industryType = customerManagedBean.getIndustryById(industry);
-            customer.setIname(industryType);
+            Industrytype industryType = customerManagedBean.getIndustryByName(industry);
+            customer.setIid(industryType);
             customerManagedBean.createCustomer(customer);
             //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been created successfully"));
             return "/faces/normal/allCustomers?faces-redirect=true";

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ling.yuze.repository.entity;
 
 import java.io.Serializable;
@@ -83,9 +78,9 @@ public class Customer implements Serializable {
     @JoinColumn(name = "UID", referencedColumnName = "UID")
     @ManyToOne(fetch = FetchType.EAGER)
     private Appuser uid;
-    @JoinColumn(name = "INAME", referencedColumnName = "INAME")
+    @JoinColumn(name = "IID", referencedColumnName = "IID")
     @ManyToOne(fetch = FetchType.EAGER)
-    private Industrytype iname;
+    private Industrytype iid;
 
     public Customer() {
     }
@@ -176,12 +171,12 @@ public class Customer implements Serializable {
         this.uid = uid;
     }
 
-    public Industrytype getIname() {
-        return iname;
+    public Industrytype getIid() {
+        return iid;
     }
 
-    public void setIname(Industrytype iname) {
-        this.iname = iname;
+    public void setIid(Industrytype iid) {
+        this.iid = iid;
     }
 
     @Override

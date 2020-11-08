@@ -95,7 +95,7 @@ public class CustomerManagedBean implements Serializable {
         return null;
     }
 
-    public Industrytype getIndustryById(String id) {
+    public Industrytype getIndustryById(Integer id) {
         try {
             return customerRepository.getIndustryById(id);
         } catch (Exception e) {
@@ -133,5 +133,13 @@ public class CustomerManagedBean implements Serializable {
     
     public void updateIndustry(Industrytype industry) throws Exception {
         customerRepository.updateIndustry(industry);
+    }
+
+    public Industrytype getIndustryByName(String industry) {
+        try {
+            return customerRepository.getIndustryByName(industry);
+        } catch (Exception e) {}
+        
+        return null;
     }
 }

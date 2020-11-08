@@ -41,10 +41,6 @@ public class AllIndustries implements Serializable {
     public void setIndustries(List<Industrytype> industries) {
         this.industries = industries;
     }
-    /*
-    public String viewCustomerById(Integer id) {
-        return "/faces/normal/customer?faces-redirect=true&id=" + id;
-    }*/
     
     public String editIndustry(Industrytype industry) {
         return "/faces/admin/editIndustry?faces-redirect=true&id=" + industry.getIname();
@@ -53,7 +49,7 @@ public class AllIndustries implements Serializable {
     public String deleteIndustry(Industrytype industry) {
         try {
             customerManagedBean.deleteIndustry(industry);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Industry has been deleted successfully")); 
             
             // Refresh List
             industries = customerManagedBean.getAllIndustries();

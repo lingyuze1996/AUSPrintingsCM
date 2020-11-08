@@ -21,7 +21,7 @@ import ling.yuze.repository.entity.Industrytype;
  */
 @Named
 @RequestScoped
-public class AllCustomers implements Serializable {
+public class AllCustomers {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     

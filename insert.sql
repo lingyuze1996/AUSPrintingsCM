@@ -5,20 +5,20 @@ INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassw
 	VALUES ('admin', 'John', 'White', '1966-08-23', 'M', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 -- Populate IndustryType Table with Default Values
-INSERT INTO INDUSTRYTYPE VALUES ('Bank', 'Bank Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Building', 'Building Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Data Communication', 'Data Communication Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Education', 'Education Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Farm', 'Farm Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Health', 'Health Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Mining', 'Mining Industry');
-INSERT INTO INDUSTRYTYPE VALUES ('Publishing', 'Publishing Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Bank', 'Bank Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Building', 'Building Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Data Communication', 'Data Communication Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Education', 'Education Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Farm', 'Farm Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Health', 'Health Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Mining', 'Mining Industry');
+INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Publishing', 'Publishing Industry');
 
 -- Populate Customer Table with Default Values
-INSERT INTO CUSTOMER (custABN, custName, custAddress, custCentralTel, custWebsite, custFoundedYear, iName, uId)
-        VALUES ('46002510054', 'Apple Australia', 'PO Box A2629, Sydney South, NSW 1235', '133622', 'https://www.apple.com/au/', 1976, 'Data Communication', 1);
-INSERT INTO CUSTOMER (custABN, custName, custAddress, custCentralTel, custWebsite, custFoundedYear, iName, uId)
-        VALUES ('88000014675', 'Woolworths Carnegie', '11-29 Kokaribb Road, Carnegie, VIC 3163', '0383476515', 'https://www.woolworths.com.au/', 1924, 'Farm', 2);
+INSERT INTO CUSTOMER (custABN, custName, custAddress, custCentralTel, custWebsite, custFoundedYear, iId, uId)
+        VALUES ('46002510054', 'Apple Australia', 'PO Box A2629, Sydney South, NSW 1235', '133622', 'https://www.apple.com/au/', 1976, 3, 1);
+INSERT INTO CUSTOMER (custABN, custName, custAddress, custCentralTel, custWebsite, custFoundedYear, iId, uId)
+        VALUES ('88000014675', 'Woolworths Carnegie', '11-29 Kokaribb Road, Carnegie, VIC 3163', '0383476515', 'https://www.woolworths.com.au/', 1924, 2, 2);
 
 -- Populate Contact Table with Default Values
 INSERT INTO CONTACT (contFirstName, contLastName, contGender, contPosition, contPhoneNo, contEmail, custId) 
