@@ -63,6 +63,7 @@
                     </tr>
                 </table>
                 <h:commandButton class="btn btn-primary" value="Edit Contact" action="#{contactDetail.editContactById()}"/>
+                <h:button value="Back to Customer" class="btn btn-primary" style="margin-left: 20px" outcome="/faces/normal/customer.xhtml?id=#{contactDetail.contact.custid.custid}"/>
             </h:form>
         </ui:define>
     </ui:composition>

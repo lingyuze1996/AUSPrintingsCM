@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="ABN: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter ABN!"
+                                value="#{addCustomerAdmin.customer.custabn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Name: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Customer Name!"
+                                value="#{addCustomerAdmin.customer.custname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Founded Year: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Founded Year!"
+                                value="#{addCustomerAdmin.customer.custfoundedyear}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Address: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Customer Address!"
+                                value="#{addCustomerAdmin.customer.custaddress}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Central Telephone Number: "/>
+                        </td>
+                        <td>
+                            <h:inputText
+                                required="true" 
+                                requiredMessage="Please Enter Customer Central Telephone Number!"
+                                value="#{addCustomerAdmin.customer.custcentraltel}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Customer Website: "/>
+                        </td>
+                        <td>
+                            <h:inputText
+                                value="#{addCustomerAdmin.customer.custwebsite}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Industry Type: "/>
+                        </td>
+                        <td>
+                            <h:selectOneMenu value="#{addCustomerAdmin.industry}">
+                                <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{addCustomerAdmin.industries}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Staff In Charge: "/>
+                        </td>
+                        <td>
+                            <h:selectOneMenu value="#{addCustomerAdmin.user}">
+                                <f:selectItems itemValue="#{user.uid}" itemLabel="#{user.ufirstname} #{user.ulastname}" var="user" value="#{addCustomerAdmin.users}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                </table>
+                <h:commandButton class="btn btn-primary" value="Create Customer" action="#{addCustomerAdmin.createCustomer()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

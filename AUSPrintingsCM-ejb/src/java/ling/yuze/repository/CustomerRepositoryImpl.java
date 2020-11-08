@@ -81,9 +81,16 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         if (customer == null) {
             return;
         }
-
+        
         customer.getContactList().remove(contact);
         em.merge(customer);
+        
+        if (!em.contains(contact)) {
+            contact = em.merge(contact);
+        }
+        em.remove(contact);
+
+        
     }
 
     @Override

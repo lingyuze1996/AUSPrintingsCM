@@ -1,6 +1,5 @@
-package ling.yuze.controller.customer;
+package ling.yuze.controller.staff;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
@@ -25,10 +24,7 @@ public class AllCustomers {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     
-    @ManagedProperty(value="#{IdentityManagedBean}")
-    private IdentityManagedBean identityManagedBean;
-    
-    private List<Customer> managedCustomers;
+    private List<Customer> customers;
     private List<Industrytype> industries;
     private String industry;
     private String state;
@@ -39,15 +35,12 @@ public class AllCustomers {
         
         customerManagedBean = (CustomerManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "customerManagedBean");
-        identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
-        .getELResolver().getValue(elContext, null, "identityManagedBean");
         
         industries = customerManagedBean.getAllIndustries();
         state = "All";
         industry = "All";
         
-        Appuser currentUser = identityManagedBean.getCurrentUser();
-        managedCustomers = customerManagedBean.getCustomersByUserId(currentUser.getUid());
+        customers = customerManagedBean.getAllCustomers();
     }
 
     public List<Industrytype> getIndustries() {
@@ -74,24 +67,24 @@ public class AllCustomers {
         this.state = state;
     }
 
-    public List<Customer> getManagedCustomers() {
-        return managedCustomers;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setManagedCustomers(List<Customer> managedCustomers) {
-        this.managedCustomers = managedCustomers;
+    public void setCustomers(List<Customer> managedCustomers) {
+        this.customers = managedCustomers;
     }
     
     public void filter() {
-        managedCustomers = customerManagedBean.searchByIndustryAndState(industry, state);
+        customers = customerManagedBean.searchByIndustryAndState(industry, state);
     }
     
     public String viewCustomerById(Integer id) {
-        return "/faces/normal/customer?faces-redirect=true&id=" + id;
+        return "/faces/admin/customer?faces-redirect=true&id=" + id;
     }
     
     public String editCustomerById(Integer id) {
-        return "/faces/normal/editCustomer?faces-redirect=true&id=" + id;
+        return "/faces/admin/editCustomer?faces-redirect=true&id=" + id;
     }
     
     public String deleteCustomer(Customer customer) {
@@ -100,7 +93,7 @@ public class AllCustomers {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully")); 
             
             // Refresh Customer List
-            managedCustomers = customerManagedBean.getCustomersByUserId(identityManagedBean.getCurrentUser().getUid());
+            customers = customerManagedBean.getAllCustomers();
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete customer")); 
         }

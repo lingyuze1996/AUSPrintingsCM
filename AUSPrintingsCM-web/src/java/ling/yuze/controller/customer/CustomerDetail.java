@@ -1,9 +1,11 @@
 package ling.yuze.controller.customer;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
@@ -17,8 +19,8 @@ import ling.yuze.repository.entity.Customer;
  * @author Roger
  */
 @Named
-@RequestScoped
-public class CustomerDetail {
+@SessionScoped
+public class CustomerDetail implements Serializable {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     private Customer customer;

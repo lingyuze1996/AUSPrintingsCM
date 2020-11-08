@@ -6,16 +6,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
         <ui:define name="content">
-            <h2 class="text-center ">All Managed Customers</h2>
+            <h2 class="text-center ">My Managed Customers</h2>
             <h:form>
                 <h:outputLabel value="Industry Type: "/>
-                <h:selectOneMenu style="margin-right: 8px" value="#{allCustomers.industry}">
+                <h:selectOneMenu style="margin-right: 8px" value="#{managedCustomers.industry}">
                     <f:selectItem itemValue="All" itemLabel="All"/>
-                    <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{allCustomers.industries}"/>
+                    <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{managedCustomers.industries}"/>
                 </h:selectOneMenu>
                 
                 <h:outputLabel style="margin-left: 16px" value="State: "/>
-                <h:selectOneMenu style="margin-left: 8px" value="#{allCustomers.state}">
+                <h:selectOneMenu style="margin-left: 8px" value="#{managedCustomers.state}">
                     <f:selectItem itemLabel="All" itemValue="All"/>
                     <f:selectItem itemLabel="ACT" itemValue="ACT"/>
                     <f:selectItem itemLabel="NSW" itemValue="NSW"/>
@@ -26,7 +26,7 @@
                     <f:selectItem itemLabel="WA" itemValue="WA"/>
                     <f:selectItem itemLabel="VIC" itemValue="VIC"/>
                 </h:selectOneMenu>
-                <h:commandButton style="margin-left: 20px" class="btn btn-primary" value="Filter" action="#{allCustomers.filter()}"/>
+                <h:commandButton style="margin-left: 20px" class="btn btn-primary" value="Filter" action="#{managedCustomers.filter()}"/>
             </h:form>
             <br/>
             <h:form>
@@ -50,7 +50,7 @@
 
                     </tr>
 
-                    <ui:repeat value="#{allCustomers.managedCustomers}" var="customer">
+                    <ui:repeat value="#{managedCustomers.managedCustomers}" var="customer">
                         <tr>
                             <td>
                                 <h:outputText value="#{customer.custid}"/>
@@ -69,9 +69,9 @@
                             </td>
 
                             <td>
-                                <h:commandLink value="View | " action="#{allCustomers.viewCustomerById(customer.custid)}"/>
-                                <h:commandLink value="Edit | " action="#{allCustomers.editCustomerById(customer.custid)}"/>
-                                <h:commandLink value="Delete" action="#{allCustomers.deleteCustomer(customer)}"/>
+                                <h:commandLink value="View | " action="#{managedCustomers.viewCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Edit | " action="#{managedCustomers.editCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Delete" action="#{managedCustomers.deleteCustomer(customer)}"/>
                             </td>
                         </tr>
                     </ui:repeat>

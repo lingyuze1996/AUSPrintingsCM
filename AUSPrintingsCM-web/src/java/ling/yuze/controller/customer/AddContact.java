@@ -1,15 +1,15 @@
 package ling.yuze.controller.customer;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
-import ling.yuze.managedbean.UserManagedBean;
-import ling.yuze.repository.entity.Appuser;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 
@@ -19,8 +19,8 @@ import ling.yuze.repository.entity.Customer;
  */
 
 @Named
-@RequestScoped
-public class AddContact {
+@SessionScoped
+public class AddContact implements Serializable {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     private Contact contact;

@@ -31,7 +31,7 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{profileSetting.currentUser.ugender}"/>
+                            <h:outputText value="#{profileSetting.currentUser.ugender eq 'M' ? 'Male': 'Female'}"/>
                         </td>
                     </tr>
                     <tr>

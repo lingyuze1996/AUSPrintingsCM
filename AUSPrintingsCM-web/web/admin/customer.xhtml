@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <f:metadata>
+            <f:viewParam name="id" required="true" value="#{customerDetail.customerId}"/>
+            <f:viewAction action="#{customerDetail.getCustomerById()}"/>
+        </f:metadata>
+
+        <ui:define name="content">
+            <h2 class="text-center">Customer Details</h2>
+            <br/>
+
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="ABN: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custabn}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Name: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Address: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custaddress}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Central Telephone Number: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custcentraltel}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Website: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custwebsite}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Founded Year: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.custfoundedyear}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Industry: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.iid.iname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Staff In Charge: "/>
+                        </td>
+                        <td>
+                            <h:outputText value="#{customerDetail.customer.uid.ufirstname} #{customerDetail.customer.uid.ulastname}"/>
+                        </td>
+                    </tr>
+                </table>
+                <h:button class="btn btn-primary" value="Edit Customer" outcome="/faces/admin/editCustomer?faces-redirect=true&id=#{customerDetail.customer.custid}"/>
+            </h:form>
+
+            <h2 class="text-center">Contacts List</h2>
+            <br/>
+            <h:form>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Name"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Position"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Phone Number"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Email"/>
+                        </td>
+                    </tr>
+
+                    <ui:repeat value="#{customerDetail.contacts}" var="contact">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{contact.contfirstname} #{contact.contlastname}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contposition}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contphoneno}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{contact.contemail}"/>
+                            </td>
+
+                            <td>
+                                <h:link value="View | " outcome="/faces/normal/contact?id=#{contact.contid}"/>
+                                <h:link value="Edit | " outcome="/faces/normal/editContact?id=#{contact.contid}"/>
+                                <h:commandLink value="Delete" action="#{customerDetail.deleteContact(contact)}"/>                                
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+                <h:button outcome="/faces/normal/addContact.xhtml?customerid=#{customerDetail.customerId}" class="btn btn-primary" value="Add Contact"/>
+            </h:form>
+            <h:messages class="none"/>
+        </ui:define>
+    </ui:composition>
+</html>
+
