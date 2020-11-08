@@ -123,4 +123,22 @@ public class CustomerRepositoryImpl implements CustomerRepository {
         }
     }
 
+    @Override
+    public void deleteIndustry(Industrytype industry) throws Exception {
+        if (!em.contains(industry)) {
+            industry = em.merge(industry);
+        }
+        em.remove(industry);
+    }
+
+    @Override
+    public void createIndustry(Industrytype industry) throws Exception {
+        em.persist(industry);
+    }
+
+    @Override
+    public void updateIndustry(Industrytype industry) throws Exception {
+        em.merge(industry);
+    }
+
 }

@@ -27,9 +27,9 @@ public interface CustomerRepository {
     void deleteContact(Contact contact) throws Exception;
     Contact getContactById(Integer contactId) throws Exception;
     
-    //void createIndustry(Industrytype industry) throws Exception;
-    //void updateIndustry(Industrytype industry) throws Exception;
-    //void deleteIndustry(Industrytype industry) throws Exception;
+    void createIndustry(Industrytype industry) throws Exception;
+    void updateIndustry(Industrytype industry) throws Exception;
+    void deleteIndustry(Industrytype industry) throws Exception;
     Industrytype getIndustryById(String industryId) throws Exception;
     List<Industrytype> getAllIndustries() throws Exception;
 

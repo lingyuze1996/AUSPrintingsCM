@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <h2 class="text-center ">All Managed Customers</h2>
+            <h:form>
+                <h:outputLabel value="Industry Type: "/>
+                <h:selectOneMenu style="margin-right: 8px" value="#{allCustomers.industry}">
+                    <f:selectItem itemValue="All" itemLabel="All"/>
+                    <f:selectItems itemValue="#{industry.iname}" itemLabel="#{industry.iname}" var="industry" value="#{allCustomers.industries}"/>
+                </h:selectOneMenu>
+                
+                <h:outputLabel style="margin-left: 16px" value="State: "/>
+                <h:selectOneMenu style="margin-left: 8px" value="#{allCustomers.state}">
+                    <f:selectItem itemLabel="All" itemValue="All"/>
+                    <f:selectItem itemLabel="ACT" itemValue="ACT"/>
+                    <f:selectItem itemLabel="NSW" itemValue="NSW"/>
+                    <f:selectItem itemLabel="NT" itemValue="NT"/>
+                    <f:selectItem itemLabel="QLD" itemValue="QLD"/>
+                    <f:selectItem itemLabel="SA" itemValue="SA"/>
+                    <f:selectItem itemLabel="TAS" itemValue="TAS"/>
+                    <f:selectItem itemLabel="WA" itemValue="WA"/>
+                    <f:selectItem itemLabel="VIC" itemValue="VIC"/>
+                </h:selectOneMenu>
+                <h:commandButton style="margin-left: 20px" class="btn btn-primary" value="Filter" action="#{allCustomers.filter()}"/>
+            </h:form>
+            <br/>
+            <h:form>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Id"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="ABN"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Name"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Central Telephone Number"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Industry"/>
+                        </td>
+
+                    </tr>
+
+                    <ui:repeat value="#{allCustomers.managedCustomers}" var="customer">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{customer.custid}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custabn}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custname}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.custcentraltel}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{customer.iname.iname}"/>
+                            </td>
+
+                            <td>
+                                <h:commandLink value="View | " action="#{allCustomers.viewCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Edit | " action="#{allCustomers.editCustomerById(customer.custid)}"/>
+                                <h:commandLink value="Delete" action="#{allCustomers.deleteCustomer(customer)}"/>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </h:form>
+            <h:button outcome="/faces/normal/addCustomer.xhtml" class="btn btn-primary" value="Add Customer"/>
+            <h:messages class="none"/>
+        </ui:define>
+    </ui:composition>
+</html>
+

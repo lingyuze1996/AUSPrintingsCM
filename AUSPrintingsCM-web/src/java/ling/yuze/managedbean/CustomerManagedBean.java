@@ -36,7 +36,7 @@ public class CustomerManagedBean implements Serializable {
             e.printStackTrace();
         }
     }
-    
+
     public void createContact(Contact contact) throws Exception {
         customerRepository.createContact(contact);
     }
@@ -94,17 +94,17 @@ public class CustomerManagedBean implements Serializable {
 
         return null;
     }
-    
+
     public Industrytype getIndustryById(String id) {
         try {
             return customerRepository.getIndustryById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return null;
     }
-    
+
     public List<Industrytype> getAllIndustries() {
         try {
             return customerRepository.getAllIndustries();
@@ -113,7 +113,7 @@ public class CustomerManagedBean implements Serializable {
         }
         return null;
     }
-    
+
     public List<Customer> searchByIndustryAndState(String industry, String state) {
         try {
             return customerRepository.searchCustomersByIndustryAndState(industry, state);
@@ -121,5 +121,17 @@ public class CustomerManagedBean implements Serializable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void deleteIndustry(Industrytype industry) throws Exception {
+        customerRepository.deleteIndustry(industry);
+    }
+    
+    public void createIndustry(Industrytype industry) throws Exception {
+        customerRepository.createIndustry(industry);
+    }
+    
+    public void updateIndustry(Industrytype industry) throws Exception {
+        customerRepository.updateIndustry(industry);
     }
 }

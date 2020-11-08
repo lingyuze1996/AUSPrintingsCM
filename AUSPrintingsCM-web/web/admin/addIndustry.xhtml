@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <h:form>
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Industry Name: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Enter Industry Name!"
+                                value="#{addIndustry.industry.iname}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Description: "/>
+                        </td>
+                        <td>
+                            <h:inputText 
+                                required="true" 
+                                requiredMessage="Please Industry Description!"
+                                value="#{addIndustry.industry.idesc}"/>
+                        </td>
+                    </tr>
+                    <h:messages class="warning"/>
+                   
+                </table>
+                <h:commandButton class="btn btn-primary" value="Create Industry" action="#{addIndustry.createIndustry()}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

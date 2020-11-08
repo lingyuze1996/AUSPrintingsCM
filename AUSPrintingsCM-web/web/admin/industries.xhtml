@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/layout.xhtml">
+        <ui:define name="content">
+            <h2 class="text-center ">Industry Types</h2>
+            <h:form>
+                </h:form>
+            <br/>
+            <h:form>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Name"/>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Description"/>
+                        </td>
+                       
+                    </tr>
+
+                    <ui:repeat value="#{allIndustries.industries}" var="industry">
+                        <tr>
+                            <td>
+                                <h:outputText value="#{industry.iname}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{industry.idesc}"/>
+                            </td>
+                           
+                            <td>
+                                <h:commandLink value="Edit | " action="#{allIndusties.editIndustry(industry)}"/>
+                                <h:commandLink value="Delete" action="#{allIndustries.deleteIndustry(industry)}"/>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </h:form>
+            <h:button outcome="/faces/admin/addIndustry.xhtml" class="btn btn-primary" value="Add Industry"/>
+            <h:messages class="none"/>
+        </ui:define>
+    </ui:composition>
+</html>
+
