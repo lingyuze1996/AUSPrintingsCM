@@ -101,12 +101,12 @@ public class ManagedCustomers {
     public String deleteCustomer(Customer customer) {
         try {
             customerManagedBean.deleteCustomer(customer);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer and all contacts have been deleted successfully!")); 
             
             // Refresh Customer List
             managedCustomers = customerManagedBean.getCustomersByUserId(identityManagedBean.getCurrentUser().getUid());
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete customer")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete customer!")); 
         }
         
         return null;

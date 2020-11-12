@@ -90,7 +90,7 @@ public class AllCustomers {
     public String deleteCustomer(Customer customer) {
         try {
             customerManagedBean.deleteCustomer(customer);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully!")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer and all contacts have been deleted successfully!")); 
             
             // Refresh Customer List
             customers = customerManagedBean.getAllCustomers();

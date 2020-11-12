@@ -57,11 +57,11 @@ public class AddContact implements Serializable {
             contact.setCustid(customer);            
             customerManagedBean.createContact(contact);
             
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been created successfully"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been created successfully!"));
             return "/faces/normal/customer?faces-redirect=true&id=" + customerId;
         } catch (Exception e) {
             e.printStackTrace();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to create new contact")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to create new contact!")); 
         }
         
         return null;

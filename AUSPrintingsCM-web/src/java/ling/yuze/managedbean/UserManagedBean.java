@@ -16,26 +16,23 @@ import ling.yuze.repository.entity.Appuser;
  */
 @Named
 @SessionScoped
-public class UserManagedBean implements Serializable{
+public class UserManagedBean implements Serializable {
+
     @EJB
     private UserRepository userRepository;
-    
+
     public void createUser(Appuser user) throws Exception {
         userRepository.createUser(user);
     }
-    
-    public void editUser(Appuser user) throws Exception{
+
+    public void editUser(Appuser user) throws Exception {
         userRepository.updateUser(user);
     }
-    
-    public void deleteUser (Appuser user) {
-        try {
-            userRepository.deleteUser(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+    public void deleteUser(Appuser user) throws Exception {
+        userRepository.deleteUser(user);
     }
-    
+
     public Appuser getUserById(Integer id) {
         try {
             Appuser user = userRepository.getUserById(id);
@@ -45,7 +42,7 @@ public class UserManagedBean implements Serializable{
         }
         return null;
     }
-    
+
     public Appuser getUserByEmail(String email) {
         try {
             Appuser user = userRepository.getUserByEmail(email);
@@ -55,7 +52,7 @@ public class UserManagedBean implements Serializable{
         }
         return null;
     }
-    
+
     public List<Appuser> getAllUsers() {
         try {
             return userRepository.getAllUsers();
@@ -64,14 +61,14 @@ public class UserManagedBean implements Serializable{
         }
         return null;
     }
-    
+
     public List<Appuser> getUsersByGender(Character gender) {
         try {
             return userRepository.searchByGender(gender);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return null;
     }
 }

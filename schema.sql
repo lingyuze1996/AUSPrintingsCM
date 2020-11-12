@@ -73,13 +73,11 @@ ALTER TABLE APPUSER ADD CONSTRAINT appuser_email_unique UNIQUE (uEmail);
 -- Foreign Key Constraints
 ALTER TABLE CUSTOMER 
     ADD CONSTRAINT customer_uId_fk FOREIGN KEY (uId) 
-        REFERENCES APPUSER (uId)
-            ON DELETE SET NULL;
+        REFERENCES APPUSER (uId);
 
 ALTER TABLE CUSTOMER 
     ADD CONSTRAINT customer_iId_fk FOREIGN KEY (iId) 
-        REFERENCES INDUSTRYTYPE (iId)
-            ON DELETE SET NULL;
+        REFERENCES INDUSTRYTYPE (iId);
 
 ALTER TABLE CONTACT 
     ADD CONSTRAINT contact_custId_fk FOREIGN KEY (custId) 

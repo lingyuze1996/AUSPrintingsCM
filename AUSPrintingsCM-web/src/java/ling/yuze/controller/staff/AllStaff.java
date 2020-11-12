@@ -71,7 +71,7 @@ public class AllStaff implements Serializable {
             // Refresh Staff List
             filterByGender();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete staff!")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete staff! Please reassign customers managed by this staff first!")); 
         }
         
         return null;

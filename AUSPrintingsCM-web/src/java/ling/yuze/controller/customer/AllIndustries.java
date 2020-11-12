@@ -54,7 +54,7 @@ public class AllIndustries implements Serializable {
             // Refresh List
             industries = customerManagedBean.getAllIndustries();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete industry")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete industry! Please update customers in this industry first!")); 
         }
         
         return null;
