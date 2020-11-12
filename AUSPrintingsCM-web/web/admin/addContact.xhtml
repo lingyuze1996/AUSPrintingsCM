@@ -6,8 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
         <f:metadata>
-            <f:viewParam name="customerid" required="true" value="#{addContact.customerId}"/>
-            <f:viewAction action="#{addContact.auth()}"/>
+            <f:viewParam name="customerid" required="true" value="#{addContactAdmin.customerId}"/>
         </f:metadata>
 
         <ui:define name="content">
@@ -21,7 +20,7 @@
                             <h:inputText id="fname"
                                          required="true" 
                                          requiredMessage="Please Enter Contact First Name!"
-                                         value="#{addContact.contact.contfirstname}"/><br/>
+                                         value="#{addContactAdmin.contact.contfirstname}"/><br/>
                             <h:message for="fname" class="label label-warning"/>
                         </td>
                     </tr>
@@ -33,7 +32,7 @@
                             <h:inputText id="lname"
                                          required="true" 
                                          requiredMessage="Please Enter Contact Last Name!"
-                                         value="#{addContact.contact.contlastname}"/><br/>
+                                         value="#{addContactAdmin.contact.contlastname}"/><br/>
                             <h:message for="lname" class="label label-warning"/>
 
                         </td>
@@ -43,7 +42,7 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:selectOneMenu value="#{addContact.contact.contgender}">
+                            <h:selectOneMenu value="#{addContactAdmin.contact.contgender}">
                                 <f:selectItem itemLabel="Male" itemValue='M'/>
                                 <f:selectItem itemLabel="Female" itemValue='F'/>
                             </h:selectOneMenu>
@@ -57,7 +56,7 @@
                             <h:inputText id="ph"
                                          required="true" validatorMessage="Please enter a 10-digit phone number!" 
                                          requiredMessage="Please Enter Contact Phone Number!"
-                                         value="#{addContact.contact.contphoneno}">
+                                         value="#{addContactAdmin.contact.contphoneno}">
                                 <f:validateRegex pattern="\d{10}"/>
                             </h:inputText><br/>
                             <h:message for="ph" class="label label-warning"/>
@@ -71,7 +70,7 @@
                             <h:inputText id="position"
                                          required="true" 
                                          requiredMessage="Please Enter Contact Position!"
-                                         value="#{addContact.contact.contposition}"/><br/>
+                                         value="#{addContactAdmin.contact.contposition}"/><br/>
                             <h:message for="position" class="label label-warning"/>
                         </td>
                     </tr>
@@ -83,14 +82,14 @@
                             <h:inputText id="email"
                                          required="true" validatorMessage="Please Enter a Valid Email!" 
                                          requiredMessage="Please Enter Contact Email!"
-                                         value="#{addContact.contact.contemail}">
+                                         value="#{addContactAdmin.contact.contemail}">
                                 <f:validateRegex pattern="^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$"/>
                             </h:inputText><br/>
                             <h:message for="email" class="label label-warning"/>
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Create Contact" action="#{addContact.createContact()}"/>
+                <h:commandButton class="btn btn-primary" value="Create Contact" action="#{addContactAdmin.createContact()}"/>
             </h:form>
         </ui:define>
     </ui:composition>

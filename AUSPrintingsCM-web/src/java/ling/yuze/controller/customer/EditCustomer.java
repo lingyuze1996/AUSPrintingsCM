@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
+import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Customer;
 import ling.yuze.repository.entity.Industrytype;
 
@@ -67,8 +68,14 @@ public class EditCustomer implements Serializable {
         this.id = id;
     }
     
-    public void getCustomerById() {
+    public void getCustomerById() throws Exception {
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+        IdentityManagedBean identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
+        .getELResolver().getValue(elContext, null, "identityManagedBean");        
+  
         customer = customerManagedBean.getCustomerById(id);
+        if (!customer.getUid().getUid().equals(identityManagedBean.getCurrentUser().getUid()))
+            throw new Exception();
         industry = customer.getIid().getIname();
     }
     

@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
+import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Contact;
+import ling.yuze.repository.entity.Customer;
 
 /**
  *
@@ -45,8 +47,13 @@ public class EditContact implements Serializable {
         this.contactId = contactId;
     }
     
-    public void getContactById() {
+    public void getContactById() throws Exception {
+        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+        IdentityManagedBean identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
+        .getELResolver().getValue(elContext, null, "identityManagedBean");      
         contact = customerManagedBean.getContactById(contactId);
+        if (!contact.getCustid().getUid().getUid().equals(identityManagedBean.getCurrentUser().getUid()))
+            throw new Exception();
     }
     
     public String editContact() {

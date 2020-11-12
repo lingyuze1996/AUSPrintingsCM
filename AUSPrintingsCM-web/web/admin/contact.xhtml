@@ -6,8 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
         <f:metadata>
-            <f:viewParam name="id" required="true" value="#{contactDetail.contactId}"/>
-            <f:viewAction action="#{contactDetail.getContactById()}"/>
+            <f:viewParam name="id" required="true" value="#{contactDetailAdmin.contactId}"/>
+            <f:viewAction action="#{contactDetailAdmin.getContactById()}"/>
         </f:metadata>
         <ui:define name="content">
             <h2 class="text-center">Contact Details</h2>
@@ -18,7 +18,7 @@
                             <h:outputLabel value="First Name: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contfirstname}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contfirstname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -26,7 +26,7 @@
                             <h:outputLabel value="Last Name: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contlastname}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contlastname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +34,7 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contgender eq 'M' ? 'Male' : 'Female'}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contgender eq 'M' ? 'Male' : 'Female'}"/>
                         </td>
                     </tr>
                     <tr>
@@ -42,7 +42,7 @@
                             <h:outputLabel value="Position: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contposition}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contposition}"/>
                         </td>
                     </tr>
                     <tr>
@@ -50,7 +50,7 @@
                             <h:outputLabel value="Email: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contemail}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contemail}"/>
                         </td>
                     </tr>
                     <tr>
@@ -58,12 +58,12 @@
                             <h:outputLabel value="Phone Number: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{contactDetail.contact.contphoneno}"/>
+                            <h:outputText value="#{contactDetailAdmin.contact.contphoneno}"/>
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Edit Contact" action="#{contactDetail.editContactById()}"/>
-                <h:button value="Back to Customer" class="btn btn-primary" style="margin-left: 20px" outcome="/faces/normal/customer.xhtml?id=#{contactDetail.contact.custid.custid}"/>
+                <h:commandButton class="btn btn-primary" value="Edit Contact" action="#{contactDetailAdmin.editContactById()}"/>
+                <h:button value="Back to Customer" class="btn btn-primary" style="margin-left: 20px" outcome="/faces/admin/customer.xhtml?id=#{contactDetailAdmin.contact.custid.custid}"/>
             </h:form>
         </ui:define>
     </ui:composition>

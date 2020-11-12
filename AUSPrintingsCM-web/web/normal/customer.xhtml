@@ -73,7 +73,7 @@
                         </td>
                     </tr>
                 </table>
-                <h:commandButton class="btn btn-primary" value="Edit Customer" action="#{customerDetail.editCustomerById()}"/>
+                <h:button class="btn btn-primary" value="Edit Customer" outcome="/faces/normal/editCustomer.xhtml?id=#{customerDetail.customerId}"/>
             </h:form>
 
             <h2 class="text-center">Contacts List</h2>

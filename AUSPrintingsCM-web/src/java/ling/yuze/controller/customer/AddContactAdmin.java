@@ -3,14 +3,12 @@ package ling.yuze.controller.customer;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
-import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 
@@ -21,7 +19,7 @@ import ling.yuze.repository.entity.Customer;
 
 @Named
 @SessionScoped
-public class AddContact implements Serializable {
+public class AddContactAdmin implements Serializable {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     private Contact contact;
@@ -34,15 +32,6 @@ public class AddContact implements Serializable {
         ELContext elContext = FacesContext.getCurrentInstance().getELContext();
         customerManagedBean = (CustomerManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "customerManagedBean");
-    }
-    
-    public void auth() throws Exception {
-        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-        IdentityManagedBean identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
-        .getELResolver().getValue(elContext, null, "identityManagedBean");
-        
-        if (!customerManagedBean.getCustomerById(customerId).getUid().getUid().equals(identityManagedBean.getCurrentUser().getUid()))
-            throw new Exception();
     }
 
     public Integer getCustomerId() {
@@ -68,7 +57,7 @@ public class AddContact implements Serializable {
             customerManagedBean.createContact(contact);
             
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been created successfully!"));
-            return "/faces/normal/customer?faces-redirect=true&id=" + customerId;
+            return "/faces/admin/customer?faces-redirect=true&id=" + customerId;
         } catch (Exception e) {
             e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to create new contact!")); 

@@ -1,24 +1,22 @@
 package ling.yuze.controller.customer;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.el.ELContext;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
-import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Contact;
-import ling.yuze.repository.entity.Customer;
 
 /**
  *
  * @author Roger
  */
 @Named
-@RequestScoped
-public class ContactDetail {
+@SessionScoped
+public class EditContactAdmin implements Serializable {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     private Contact contact;
@@ -47,18 +45,19 @@ public class ContactDetail {
         this.contactId = contactId;
     }
     
-    public void getContactById() throws Exception {
-        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-        IdentityManagedBean identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
-        .getELResolver().getValue(elContext, null, "identityManagedBean");
-                
+    public void getContactById() {
         contact = customerManagedBean.getContactById(contactId);
-        if (!contact.getCustid().getUid().getUid().equals(identityManagedBean.getCurrentUser().getUid()))
-            throw new Exception();
     }
     
-    public String editContactById() {
-        return "/faces/normal/editContact?faces-redirect=true&id=" + contactId;
+    public String editContact() {
+        try {
+            customerManagedBean.editContact(contact);
+            return "/faces/admin/contact?faces-redirect=true&id=" + contactId;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
     
     

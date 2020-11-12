@@ -6,8 +6,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/layout.xhtml">
         <f:metadata>
-            <f:viewParam name="id" required="true" value="#{customerDetail.customerId}"/>
-            <f:viewAction action="#{customerDetail.getCustomerById()}"/>
+            <f:viewParam name="id" required="true" value="#{customerDetailAdmin.customerId}"/>
+            <f:viewAction action="#{customerDetailAdmin.getCustomerById()}"/>
         </f:metadata>
 
         <ui:define name="content">
@@ -21,7 +21,7 @@
                             <h:outputLabel value="ABN: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custabn}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custabn}"/>
                         </td>
                     </tr>
                     <tr>
@@ -29,7 +29,7 @@
                             <h:outputLabel value="Name: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custname}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -37,7 +37,7 @@
                             <h:outputLabel value="Address: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custaddress}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custaddress}"/>
                         </td>
                     </tr>
                     <tr>
@@ -45,7 +45,7 @@
                             <h:outputLabel value="Central Telephone Number: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custcentraltel}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custcentraltel}"/>
                         </td>
                     </tr>
                     <tr>
@@ -53,7 +53,7 @@
                             <h:outputLabel value="Website: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custwebsite}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custwebsite}"/>
                         </td>
                     </tr>
                     <tr>
@@ -61,7 +61,7 @@
                             <h:outputLabel value="Founded Year: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.custfoundedyear}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.custfoundedyear}"/>
                         </td>
                     </tr>
                     <tr>
@@ -69,7 +69,7 @@
                             <h:outputLabel value="Industry: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.iid.iname}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.iid.iname}"/>
                         </td>
                     </tr>
                     <tr>
@@ -77,11 +77,11 @@
                             <h:outputLabel value="Staff In Charge: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{customerDetail.customer.uid.ufirstname} #{customerDetail.customer.uid.ulastname}"/>
+                            <h:outputText value="#{customerDetailAdmin.customer.uid.ufirstname} #{customerDetailAdmin.customer.uid.ulastname}"/>
                         </td>
                     </tr>
                 </table>
-                <h:button class="btn btn-primary" value="Edit Customer" outcome="/faces/admin/editCustomer?id=#{customerDetail.customer.custid}"/>
+                <h:button class="btn btn-primary" value="Edit Customer" outcome="/faces/admin/editCustomer?id=#{customerDetailAdmin.customer.custid}"/>
             </h:form>
 
             <h2 class="text-center">Contacts List</h2>
@@ -103,7 +103,7 @@
                         </td>
                     </tr>
 
-                    <ui:repeat value="#{customerDetail.contacts}" var="contact">
+                    <ui:repeat value="#{customerDetailAdmin.contacts}" var="contact">
                         <tr>
                             <td>
                                 <h:outputText value="#{contact.contfirstname} #{contact.contlastname}"/>
@@ -119,14 +119,14 @@
                             </td>
 
                             <td>
-                                <h:link value="View | " outcome="/faces/normal/contact?id=#{contact.contid}"/>
-                                <h:link value="Edit | " outcome="/faces/normal/editContact?id=#{contact.contid}"/>
-                                <h:commandLink value="Delete" action="#{customerDetail.deleteContact(contact)}"/>                                
+                                <h:link value="View | " outcome="/faces/admin/contact?id=#{contact.contid}"/>
+                                <h:link value="Edit | " outcome="/faces/admin/editContact?id=#{contact.contid}"/>
+                                <h:commandLink value="Delete" action="#{customerDetailAdmin.deleteContact(contact)}"/>                                
                             </td>
                         </tr>
                     </ui:repeat>
                 </table>
-                <h:button outcome="/faces/normal/addContact.xhtml?customerid=#{customerDetail.customerId}" class="btn btn-primary" value="Add Contact"/>
+                <h:button outcome="/faces/admin/addContact.xhtml?customerid=#{customerDetailAdmin.customerId}" class="btn btn-primary" value="Add Contact"/>
             </h:form>
             <h:messages class="none"/>
         </ui:define>

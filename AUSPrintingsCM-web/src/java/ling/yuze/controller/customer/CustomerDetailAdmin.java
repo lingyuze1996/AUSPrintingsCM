@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
-import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 
@@ -20,7 +19,7 @@ import ling.yuze.repository.entity.Customer;
  */
 @Named
 @SessionScoped
-public class CustomerDetail implements Serializable {
+public class CustomerDetailAdmin implements Serializable {
     @ManagedProperty(value="#{customerManagedBean}")
     private CustomerManagedBean customerManagedBean;
     private Customer customer;
@@ -58,23 +57,15 @@ public class CustomerDetail implements Serializable {
         this.customerId = customerId;
     }
     
-    public void getCustomerById() throws Exception {
-        ELContext elContext = FacesContext.getCurrentInstance().getELContext();
-        IdentityManagedBean identityManagedBean = (IdentityManagedBean) FacesContext.getCurrentInstance().getApplication()
-        .getELResolver().getValue(elContext, null, "identityManagedBean");
-        
+    public void getCustomerById() {
         customer = customerManagedBean.getCustomerById(customerId);
-        
-        if (!customer.getUid().getUid().equals(identityManagedBean.getCurrentUser().getUid()))
-            throw new Exception();
-        
         contacts = customer.getContactList();
     }
     
     public String deleteContact(Contact contact) {
         customerManagedBean.deleteContact(contact);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Contact has been deleted successfully!")); 
-        return "/faces/normal/customer?faces-redirect=true&id=" + customerId;
+        return "/faces/admin/customer?faces-redirect=true&id=" + customerId;
     }    
     
 }
