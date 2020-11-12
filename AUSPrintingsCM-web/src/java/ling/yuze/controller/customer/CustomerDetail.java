@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.CustomerManagedBean;
+import ling.yuze.managedbean.IdentityManagedBean;
 import ling.yuze.repository.entity.Contact;
 import ling.yuze.repository.entity.Customer;
 

@@ -67,7 +67,7 @@ public class Contact implements Serializable {
     private String contposition;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 10, max = 10)
     @Column(name = "CONTPHONENO")
     private String contphoneno;
     @Basic(optional = false)

@@ -48,7 +48,7 @@ public class Customer implements Serializable {
     private Integer custid;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 11, max = 11)
     @Column(name = "CUSTABN")
     private String custabn;
     @Basic(optional = false)
@@ -63,7 +63,7 @@ public class Customer implements Serializable {
     private String custaddress;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 6, max = 10)
     @Column(name = "CUSTCENTRALTEL")
     private String custcentraltel;
     @Size(max = 40)
@@ -72,7 +72,7 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "CUSTFOUNDEDYEAR")
-    private int custfoundedyear;
+    private Integer custfoundedyear;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "custid", fetch = FetchType.EAGER)
     private List<Contact> contactList;
     @JoinColumn(name = "UID", referencedColumnName = "UID")
@@ -146,11 +146,11 @@ public class Customer implements Serializable {
         this.custwebsite = custwebsite;
     }
 
-    public int getCustfoundedyear() {
+    public Integer getCustfoundedyear() {
         return custfoundedyear;
     }
 
-    public void setCustfoundedyear(int custfoundedyear) {
+    public void setCustfoundedyear(Integer custfoundedyear) {
         this.custfoundedyear = custfoundedyear;
     }
 

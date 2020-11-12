@@ -14,6 +14,9 @@
                 <table class="table table-bordered table-striped">
                     <tr>
                         <td>
+                            <h:outputLabel value="Industry ID"/>
+                        </td>
+                        <td>
                             <h:outputLabel value="Name"/>
                         </td>
                         <td>
@@ -24,6 +27,9 @@
 
                     <ui:repeat value="#{allIndustries.industries}" var="industry">
                         <tr>
+                            <td>
+                                <h:outputText value="#{industry.iid}"/>
+                            </td>
                             <td>
                                 <h:outputText value="#{industry.iname}"/>
                             </td>
@@ -39,7 +45,7 @@
                     </ui:repeat>
                 </table>
             </h:form>
-            <h:button outcome="/faces/admin/addIndustry.xhtml" class="btn btn-primary" value="Add Industry"/>
+            <h:button outcome="/faces/admin/addIndustry.xhtml" class="btn btn-primary" value="Add Industry"/><br/>
             <h:messages class="none"/>
         </ui:define>
     </ui:composition>

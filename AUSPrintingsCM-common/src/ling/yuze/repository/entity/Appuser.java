@@ -82,7 +82,7 @@ public class Appuser implements Serializable {
     private String uemail;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size(min = 64, max = 64)
     @Column(name = "UPASSWORD")
     private String upassword;
     @OneToMany(mappedBy = "uid", fetch = FetchType.EAGER)

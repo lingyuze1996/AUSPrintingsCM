@@ -66,12 +66,12 @@ public class AllStaff implements Serializable {
     public String deleteStaff(Appuser staff) {
         try {
             userManagedBean.deleteUser(staff);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been deleted successfully")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been deleted successfully!")); 
             
             // Refresh Staff List
             filterByGender();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete staff")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete staff!")); 
         }
         
         return null;

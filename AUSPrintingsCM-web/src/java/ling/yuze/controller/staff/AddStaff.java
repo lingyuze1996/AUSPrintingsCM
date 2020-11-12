@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import ling.yuze.managedbean.UserManagedBean;
 import ling.yuze.repository.entity.Appuser;
+import ling.yuze.utility.Encryption;
 
 /**
  *
@@ -21,6 +22,7 @@ public class AddStaff {
     @ManagedProperty(value="#{userManagedBean}")
     private UserManagedBean userManagedBean;
     private Appuser staff;
+    private String pw;
     
     @PostConstruct
     public void init() {
@@ -29,6 +31,14 @@ public class AddStaff {
         ELContext elContext = FacesContext.getCurrentInstance().getELContext();
         userManagedBean = (UserManagedBean) FacesContext.getCurrentInstance().getApplication()
         .getELResolver().getValue(elContext, null, "userManagedBean");
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
     }
     
     public Appuser getStaff() {
@@ -41,8 +51,8 @@ public class AddStaff {
     
     public String createStaff() {
         try {
+            staff.setUpassword(Encryption.toSHA256(pw));
             userManagedBean.createUser(staff);
-            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Staff has been created successfully"));
             return "/faces/admin/allStaff?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();

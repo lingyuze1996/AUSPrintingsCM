@@ -1,8 +1,8 @@
 -- Populate AppUser Table with Default Values
 INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('normal', 'Mary', 'Smith', '1993-05-10', 'F', 'normal', '317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa');
+	VALUES ('normal', 'Mary', 'Smith', '1993-05-10', 'F', 'normal@gmail.com', '317b32c143692b9939c197f6a5df54f9698df9a4882fe8bf19608968662be4fa');
 INSERT INTO APPUSER (uRole, uFirstName, uLastName, uDOB, uGender, uEmail, uPassword) 
-	VALUES ('admin', 'John', 'White', '1966-08-23', 'M', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
+	VALUES ('admin', 'John', 'White', '1966-08-23', 'M', 'admin@gmail.com', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918');
 
 -- Populate IndustryType Table with Default Values
 INSERT INTO INDUSTRYTYPE (iName, iDesc) VALUES ('Bank', 'Bank Industry');

@@ -1,4 +1,4 @@
-package ling.yuze.controller.staff;
+package ling.yuze.controller.customer;
 ;
 import java.io.Serializable;
 import java.util.List;

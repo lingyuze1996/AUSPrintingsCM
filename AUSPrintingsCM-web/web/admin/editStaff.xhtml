@@ -17,10 +17,11 @@
                             <h:outputLabel value="First Name: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter Staff First Name!"
-                                value="#{editStaff.staff.ufirstname}"/>
+                            <h:inputText id="fname"
+                                         required="true" 
+                                         requiredMessage="Please Enter Staff First Name!"
+                                         value="#{editStaff.staff.ufirstname}"/>
+                            <h:message for="fname" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -28,10 +29,11 @@
                             <h:outputLabel value="Last Name: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter Staff Last Name!"
-                                value="#{editStaff.staff.ulastname}"/>
+                            <h:inputText id="lname" 
+                                         required="true" 
+                                         requiredMessage="Please Enter Staff Last Name!"
+                                         value="#{editStaff.staff.ulastname}"/><br/>
+                            <h:message for="lname" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -39,10 +41,11 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Choose Staff Gender!"
-                                value="#{editStaff.staff.ugender}"/>
+                            <h:selectOneMenu value="#{editStaff.staff.ugender}">
+                                <f:selectItem itemLabel="Male" itemValue='M'/>
+                                <f:selectItem itemLabel="Female" itemValue='F'/>
+                            </h:selectOneMenu>
+
                         </td>
                     </tr>
                     <tr>
@@ -50,12 +53,13 @@
                             <h:outputLabel value="Date of Birth: "/>
                         </td>
                         <td>
-                            <h:inputText converterMessage="Please follow date format mm/dd/yyyy!"
+                            <h:inputText id="dob" converterMessage="Please follow date format mm/dd/yyyy!"
                                          required="true" 
                                          requiredMessage="Please Enter Staff Date of Birth!"
                                          value="#{editStaff.staff.udob}">
                                 <f:convertDateTime pattern="MM/dd/yyyy"/>
-                            </h:inputText>
+                            </h:inputText><br/>
+                            <h:message for="dob" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -63,10 +67,13 @@
                             <h:outputLabel value="Email: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Choose Staff Email!"
-                                value="#{editStaff.staff.uemail}"/>
+                            <h:inputText id="email" 
+                                         required="true" validatorMessage="Please Enter a Valid Email!"
+                                         requiredMessage="Please Enter Staff Email!"
+                                         value="#{editStaff.staff.uemail}">
+                                <f:validateRegex pattern="^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$"/>
+                            </h:inputText><br/>
+                            <h:message for="email" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -74,10 +81,10 @@
                             <h:outputLabel value="Role: "/>
                         </td>
                         <td>
-                            <h:inputText
-                                required="true" 
-                                requiredMessage="Please Choose Staff Role!"
-                                value="#{editStaff.staff.urole}"/>
+                            <h:selectOneMenu value="#{editStaff.staff.urole}">
+                                <f:selectItem itemLabel="Normal" itemValue="normal"/>
+                                <f:selectItem itemLabel="Admin" itemValue="admin"/>
+                            </h:selectOneMenu>
                         </td>
                     </tr>
                 </table>

@@ -1,4 +1,4 @@
-package ling.yuze.controller.staff;
+package ling.yuze.controller.customer;
 
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -90,12 +90,12 @@ public class AllCustomers {
     public String deleteCustomer(Customer customer) {
         try {
             customerManagedBean.deleteCustomer(customer);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Customer has been deleted successfully!")); 
             
             // Refresh Customer List
             customers = customerManagedBean.getAllCustomers();
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete customer")); 
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fail to delete customer!")); 
         }
         
         return null;

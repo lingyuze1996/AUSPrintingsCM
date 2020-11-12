@@ -17,10 +17,13 @@
                             <h:outputLabel value="ABN: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter ABN!"
-                                value="#{editCustomer.customer.custabn}"/>
+                            <h:inputText id="abn" 
+                                         required="true" 
+                                         requiredMessage="Please Enter ABN!" validatorMessage="Please enter a 11-digit number!"
+                                         value="#{editCustomer.customer.custabn}">
+                                <f:validateRegex pattern="\d{11}"/>
+                            </h:inputText><br/>
+                            <h:message for="abn" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -28,10 +31,11 @@
                             <h:outputLabel value="Name: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter Customer Name!"
-                                value="#{editCustomer.customer.custname}"/>
+                            <h:inputText id="name"
+                                         required="true" 
+                                         requiredMessage="Please Enter Customer Name!"
+                                         value="#{editCustomer.customer.custname}"/><br/>
+                            <h:message for="name" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -39,10 +43,11 @@
                             <h:outputLabel value="Address: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please Enter Customer Address!"
-                                value="#{editCustomer.customer.custaddress}"/>
+                            <h:inputText id="ad"
+                                         required="true" 
+                                         requiredMessage="Please Enter Customer Address!"
+                                         value="#{editCustomer.customer.custaddress}"/><br/>
+                            <h:message for="ad" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -50,10 +55,14 @@
                             <h:outputLabel value="Founded Year: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please enter founded year!"
-                                value="#{editCustomer.customer.custfoundedyear}"/>
+                            <h:inputText id="yy" validatorMessage="Please enter a valid year!"
+                                         required="true" converterMessage="Please enter a number!" 
+                                         requiredMessage="Please enter founded year!"
+                                         value="#{editCustomer.customer.custfoundedyear}">
+                                <f:convertNumber integerOnly="true"/>
+                                <f:validateLongRange maximum="2020" minimum="0"/>
+                            </h:inputText><br/>
+                            <h:message for="yy" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -61,10 +70,13 @@
                             <h:outputLabel value="Central Telephone Number: "/>
                         </td>
                         <td>
-                            <h:inputText 
-                                required="true" 
-                                requiredMessage="Please enter central telephone number!"
-                                value="#{editCustomer.customer.custcentraltel}"/>
+                            <h:inputText id="tel"
+                                         required="true" validatorMessage="Please enter a valid phone number!"
+                                         requiredMessage="Please enter central telephone number!"
+                                         value="#{editCustomer.customer.custcentraltel}">
+                                <f:validateRegex pattern="\d{6,10}"/>
+                            </h:inputText><br/>
+                            <h:message for="tel" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -72,8 +84,9 @@
                             <h:outputLabel value="Website: "/>
                         </td>
                         <td>
-                            <h:inputText
-                                value="#{editCustomer.customer.custwebsite}"/>
+                            <h:inputText id="web"
+                                         value="#{editCustomer.customer.custwebsite}"/><br/>
+                            <h:message for="web" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>

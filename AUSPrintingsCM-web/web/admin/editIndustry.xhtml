@@ -17,10 +17,11 @@
                             <h:outputLabel value="Industry Name: "/>
                         </td>
                         <td>
-                            <h:inputText 
+                            <h:inputText id="name"
                                 required="true" 
                                 requiredMessage="Please Enter Industry Name!"
-                                value="#{editIndustry.industry.iname}"/>
+                                value="#{editIndustry.industry.iname}"/><br/>
+                            <h:message for="name" class="label label-warning"/>
                         </td>
                     </tr>
                     <tr>
@@ -28,10 +29,11 @@
                             <h:outputLabel value="Description: "/>
                         </td>
                         <td>
-                            <h:inputText 
+                            <h:inputText id="desc"
                                 required="true" 
                                 requiredMessage="Please Enter Description!"
-                                value="#{editIndustry.industry.idesc}"/>
+                                value="#{editIndustry.industry.idesc}"/><br/>
+                            <h:message for="desc" class="label label-warning"/>
                         </td>
                     </tr>
                 </table>

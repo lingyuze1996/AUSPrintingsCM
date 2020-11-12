@@ -34,7 +34,7 @@
                             <h:outputLabel value="Gender: "/>
                         </td>
                         <td>
-                            <h:outputText value="#{staffDetail.staff.ugender}"/>
+                            <h:outputText value="#{staffDetail.staff.ugender eq 'M' ? 'Male' : 'Female'}"/>
                         </td>
                     </tr>
                     <tr>
